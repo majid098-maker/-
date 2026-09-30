@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="مختبر تفاعلي لدرس المسند والمسند إليه للصف الثاني عشر - مدرسة الإمام المهنا بن سلطان - إعداد د. ماجد الحسيني">
+<title>مختبر المسند والمسند إليه | مدرسة الإمام المهنا بن سلطان</title>
+<style>
+:root{
+  --bg:#f6f3ec; --paper:#fffefb; --card:#ffffff; --ink:#17242c; --muted:#6b747a;
+  --line:#e5e0d6; --teal:#145d62; --teal2:#28787b; --tealsoft:#e8f1ef;
+  --gold:#ad7c36; --goldsoft:#f4ecde; --wine:#7f4d5d; --bad:#a64d4d; --good:#377864;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+button{font-family:inherit}
+.app{width:min(1220px,calc(100% - 24px));margin:16px auto 32px}
+.shell{background:var(--paper);border:1px solid var(--line);border-radius:30px;overflow:hidden;box-shadow:0 24px 70px rgba(28,37,42,.08)}
+header{padding:28px 30px 18px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end}
+.kicker{font-size:12px;font-weight:800;color:var(--muted)}
+h1{margin:5px 0 10px;font-size:clamp(30px,5vw,54px);line-height:1.15;letter-spacing:-.8px}
+header p{margin:0;color:var(--muted);line-height:1.9;max-width:780px}
+.score{border:1px solid var(--line);background:var(--card);border-radius:20px;min-width:128px;text-align:center;padding:14px}
+.score strong{font-size:29px;display:block}.score span{font-size:11px;color:var(--muted)}
+.rule{margin:0 30px 15px;padding:11px 14px;border-radius:15px;background:var(--tealsoft);color:var(--muted);font-size:12px;line-height:1.8}
+.progress{height:4px;background:#eee9df}.progress i{display:block;height:100%;background:var(--teal);width:12.5%;transition:width .3s}
+.navwrap{padding:14px 22px;border-bottom:1px solid var(--line);overflow-x:auto}
+.nav{display:flex;gap:8px;min-width:max-content}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:10px 14px;min-height:44px;font-size:13px;font-weight:800;cursor:pointer}
+.tab[aria-selected=true]{background:var(--teal);color:white;border-color:var(--teal)}
+.view{display:none;padding:24px 30px 32px;min-height:570px;animation:fade .22s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+.head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:18px}
+h2{font-size:25px;line-height:1.4;margin:0}.sub{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.8}
+.pill{font-size:11px;border:1px solid var(--line);padding:6px 9px;border-radius:999px;color:var(--muted);white-space:nowrap}
+.heroPair{display:grid;grid-template-columns:1fr 100px 1fr;gap:12px;align-items:center;max-width:850px;margin:30px auto}
+.heroRole{border:1px solid var(--line);border-radius:22px;background:var(--card);padding:24px;text-align:center}
+.heroRole strong{display:block;font-size:27px}.heroRole small{display:block;margin-top:7px;color:var(--muted);line-height:1.7}
+.link{text-align:center;color:var(--muted);font-size:12px}.link b{font-size:18px;color:var(--ink);display:block}
+.card{border:1px solid var(--line);border-radius:24px;background:var(--card);padding:20px}
+.sentence{text-align:center;font-size:clamp(26px,5vw,40px);font-weight:900;line-height:1.75;margin:8px 0 12px}
+.chips{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:10px 15px;border-radius:14px;font-size:19px;font-weight:800;cursor:pointer;min-height:48px}
+.chip.se{border-color:var(--teal);box-shadow:inset 0 -4px 0 rgba(20,93,98,.35)}
+.chip.s{border-color:var(--gold);box-shadow:inset 0 -4px 0 rgba(173,124,54,.35)}
+.chip.bad{border-color:var(--bad)}
+.feedback{margin-top:14px;border-radius:15px;background:var(--paper);padding:13px 15px;min-height:56px;color:var(--muted);line-height:1.8}
+.feedback strong{color:var(--ink)}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.primary,.secondary{min-height:44px;border-radius:14px;padding:10px 16px;font-weight:800;cursor:pointer}
+.primary{background:var(--teal);color:#fff;border:1px solid var(--teal)}
+.secondary{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+button:disabled{opacity:.42;cursor:not-allowed}
+.roleGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.roleCol{border:1px solid var(--line);border-radius:24px;background:var(--card);overflow:hidden}
+.roleHead{padding:16px 17px;background:var(--paper);display:flex;justify-content:space-between;gap:10px;align-items:center}
+.roleHead b{font-size:19px}.roleHead span{font-size:11px;color:var(--muted)}
+.roleItem{border-top:1px solid var(--line);padding:0}
+.roleToggle{width:100%;border:0;background:transparent;text-align:right;padding:14px 17px;cursor:pointer;color:var(--ink);font-size:15px;font-weight:900}
+.roleToggle small{display:block;margin-top:4px;color:var(--muted);font-weight:400;line-height:1.6}
+.roleBody{display:none;padding:0 17px 17px;color:var(--muted);line-height:1.8}
+.roleItem.open .roleBody{display:block}
+.examples{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.example{font-size:12px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 9px;color:var(--ink)}
+.source{font-size:10px;color:var(--muted);margin-top:9px}
+.matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.matrix .box{border:1px solid var(--line);border-radius:18px;padding:13px;background:var(--card);text-align:center;font-weight:900}
+.matrix small{display:block;margin-top:4px;color:var(--muted);font-weight:400}
+.qtitle{font-size:22px;font-weight:900;line-height:1.75;margin-bottom:14px}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.opt{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:14px;min-height:54px;padding:11px;font-weight:800;cursor:pointer}
+.opt.good{border-color:var(--good);background:#eff7f3}.opt.bad{border-color:var(--bad);background:#fbefef}
+.focus{border-bottom:3px solid var(--gold);padding-bottom:2px}
+.caseGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.case{border:1px solid var(--line);border-radius:20px;background:var(--card);padding:17px}
+.case .label{font-size:11px;color:var(--muted);font-weight:900}.case .ex{font-size:20px;font-weight:900;line-height:1.7;margin:8px 0}
+.case .answer{display:none;border-top:1px solid var(--line);padding-top:11px;margin-top:11px;color:var(--muted);line-height:1.8}.case.open .answer{display:block}.case.open .reveal{display:none}
+.examMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.tag{font-size:11px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:var(--muted)}
+.examFinal{text-align:center;background:var(--paper);border-radius:22px;padding:24px}.examFinal strong{font-size:46px;display:block}
+.miniStats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}.miniStats div{border:1px solid var(--line);border-radius:15px;padding:10px}.miniStats b{display:block;font-size:19px}.miniStats span{font-size:10px;color:var(--muted)}
+.footer{padding:14px 24px 22px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center}
+@media(max-width:760px){
+ header{grid-template-columns:1fr;padding:20px 16px 16px}.score{justify-self:start}.rule{margin:0 16px 14px}
+ .view{padding:18px 14px 24px}.heroPair{grid-template-columns:1fr}.link{padding:3px}.roleGrid,.caseGrid,.opts{grid-template-columns:1fr}.matrix{grid-template-columns:1fr}.miniStats{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.view{animation:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<section class="shell">
+<header>
+<div>
+<div class="kicker">مدرسة الإمام المهنا بن سلطان</div><div class="kicker" style="margin-top:5px">البلاغة · الصف الثاني عشر · كتاب المفيد + دفتر تيسير المفيد</div>
+<h1>مختبر المسند والمسند إليه</h1>
+<p>نسخة موسعة للتدريب: أمثلة أكثر، جميع المواقع، حالات خاصة، تمييز القيود، وبنك محاكاة نهائي لا يثبت الإجابة الصحيحة في موضع واحد.</p>
+</div>
+<div class="score"><strong id="score">٠</strong><span>إجابات صحيحة</span></div>
+</header>
+<div style="margin:0 30px 10px;color:var(--muted);font-size:12px;font-weight:700">إعداد: د. ماجد الحسيني</div><div class="rule">نطاق التدريب: <b>المسند والمسند إليه فقط</b>. قد تظهر جمل يختلف فيها ترتيب العناصر، لكننا لا نبحث هنا أغراض التقديم والتأخير.</div>
+<div class="progress"><i id="progress"></i></div>
+<div class="navwrap"><nav class="nav">
+<button class="tab" data-view="discover" aria-selected="true">١ · الفكرة</button>
+<button class="tab" data-view="map">٢ · جميع المواقع</button>
+<button class="tab" data-view="identify">٣ · التعيين السريع</button>
+<button class="tab" data-view="role">٤ · اختبار الموقع</button>
+<button class="tab" data-view="special">٥ · الحالات الخاصة</button>
+<button class="tab" data-view="extras">٦ · ما ليس طرفًا</button>
+<button class="tab" data-view="exam">٧ · محاكاة النهائي</button>
+<button class="tab" data-view="summary">٨ · الخلاصة</button>
+</nav></div>
+
+<section class="view active" data-panel="discover">
+<div class="head"><div><h2>من المحكوم عليه؟ وما الحكم؟</h2><div class="sub">هذه هي البوصلة التي تعمل في جميع الحالات قبل أن تسمي الموقع الإعرابي.</div></div><span class="pill">ابدأ هنا</span></div>
+<div class="heroPair">
+<div class="heroRole"><strong>المسند إليه</strong><small>الاسم الذي أُسند إليه الحكم<br>المحكوم عليه / المثبت له</small></div>
+<div class="link"><b>↔</b>علاقة الإسناد</div>
+<div class="heroRole"><strong>المسند</strong><small>الحكم الذي نثبته للمسند إليه<br>المحكوم به / المثبت</small></div>
+</div>
+<div class="card">
+<div class="sentence" id="dSentence"></div>
+<div class="chips" id="dChips"></div>
+<div class="feedback" id="dFeedback"></div>
+<div class="actions"><button class="secondary" id="dNext">مثال جديد</button></div>
+</div>
+</section>
+
+<section class="view" data-panel="map">
+<div class="head"><div><h2>جميع المواقع — مع تفريع الحالات</h2><div class="sub">افتح كل خانة. ستجد أمثلة الكتاب والدفتر، ومعها أمثلة تدريب إضافية لاختبار النمط نفسه.</div></div><span class="pill">٥ مواقع + تفريعات</span></div>
+<div class="roleGrid">
+<div class="roleCol">
+<div class="roleHead"><b>المسند إليه</b><span>المحكوم عليه</span></div>
+
+<div class="roleItem"><button class="roleToggle">١. المبتدأ <small>الجملة الاسمية البسيطة</small></button><div class="roleBody">
+الحكم يُسند إلى المبتدأ.
+<div class="examples"><span class="example">الحياةُ كفاحٌ</span><span class="example">أنتَ شجاعٌ</span><span class="example">المسلمون منتصرون</span><span class="example">العلمُ نورٌ</span><span class="example">الصدقُ منجاةٌ</span></div>
+<div class="source">أول ثلاثة أمثلة من دفتر التيسير، وآخر مثالين للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٢. ما كان أصله مبتدأ <small>اسم كان وأخواتها · اسم إن وأخواتها · المفعول الأول لظن وأخواتها</small></button><div class="roleBody">
+هذه خانة واحدة في الدرس، لكنها تأتي في ثلاث صور مهمة:
+<div class="examples"><span class="example">كانت الشمسُ مشرقةً</span><span class="example">ظل الرجلُ مشغولًا</span><span class="example">إنَّ البحرَ هائجٌ</span><span class="example">لعل الحقَّ يظهر</span><span class="example">ظننتُ العاملَ مستيقظًا</span><span class="example">حسبتُ الصديقَ مسافرًا</span><span class="example">أصبح الجوُّ معتدلًا</span><span class="example">إنَّ الطالبَ مجتهدٌ</span></div>
+<div class="source">الستة الأولى من دفتر التيسير؛ الأخيران للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٣. الفاعل <small>اسم ظاهر أو ضمير مستتر</small></button><div class="roleBody">
+<div class="examples"><span class="example">انتصر الأبطالُ</span><span class="example">اقتربت الساعةُ</span><span class="example">يغرد البلبلُ</span><span class="example">احمِ وطنك ← أنتَ</span><span class="example">اكتبْ واجبك ← أنتَ</span><span class="example">وصل المسافرُ</span></div>
+<div class="source">الأربعة الأولى من الدفتر؛ الأخيران للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٤. نائب الفاعل <small>مع الفعل المبني للمجهول</small></button><div class="roleBody">
+<div class="examples"><span class="example">كُسِرَ الزجاجُ</span><span class="example">قُضِيَ الأمرُ</span><span class="example">يُكرَم الضيفُ</span><span class="example">فُتِحَ البابُ</span><span class="example">كُتِبَ الدرسُ</span></div>
+<div class="source">الثلاثة الأولى من الدفتر؛ الأخيران للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٥. مرفوع المبتدأ المشتق <small>فاعل المبتدأ المشتق الذي ليس له خبر</small></button><div class="roleBody">
+<div class="examples"><span class="example">ما قائمٌ زيدٌ</span><span class="example">هل حاضرٌ أبوك؟</span><span class="example">ما مجحودٌ فضلُكم</span><span class="example">أقادمٌ أخوك؟</span><span class="example">أمحبوبٌ الصدقُ؟</span></div>
+<div class="source">الثلاثة الأولى من الدفتر؛ الأخيران للتدريب.</div></div></div>
+</div>
+
+<div class="roleCol">
+<div class="roleHead"><b>المسند</b><span>الحكم</span></div>
+
+<div class="roleItem"><button class="roleToggle">١. الخبر <small>خبر المبتدأ</small></button><div class="roleBody">
+<div class="examples"><span class="example">الحياة كفاحٌ</span><span class="example">المعلمات مجتهداتٌ</span><span class="example">العمانيون طيبون</span><span class="example">الطريق طويلٌ</span><span class="example">السماء صافيةٌ</span></div>
+<div class="source">الثلاثة الأولى من الدفتر؛ الأخيران للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٢. ما كان أصله خبرًا <small>خبر كان وأخواتها · خبر إن وأخواتها · المفعول الثاني لظن وأخواتها</small></button><div class="roleBody">
+<div class="examples"><span class="example">ليس هذا عدلًا</span><span class="example">أضحى النصرُ قريبًا</span><span class="example">إنك ميتٌ</span><span class="example">كأن وجهَ الطفلةِ قمرٌ</span><span class="example">وجدتُ الوفاءَ نادرًا</span><span class="example">خلتُك مؤدبًا</span><span class="example">كان الجوُّ لطيفًا</span><span class="example">إنَّ العملَ مثمرٌ</span></div>
+<div class="source">الستة الأولى من الدفتر؛ الأخيران للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٣. الفعل <small>ماضٍ أو مضارع أو أمر</small></button><div class="roleBody">
+<div class="examples"><span class="example">يأبى العربيُّ الضيمَ</span><span class="example">نام الطفلُ</span><span class="example">يغرد البلبلُ</span><span class="example">اقرأْ يا محمد</span><span class="example">نجح الطالبُ</span><span class="example">يحفظ المجتهدُ درسه</span></div>
+<div class="source">الأربعة الأولى من أمثلة الدرس والدفتر؛ الأخيران للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٤. المصدر النائب عن فعل الأمر <small>وفاعله محذوف دائمًا وفق عرض الدفتر</small></button><div class="roleBody">
+<div class="examples"><span class="example">صبرًا على نوائب الدهر</span><span class="example">بالوالدين إحسانًا</span><span class="example">قيامًا عند دخول الأستاذ</span><span class="example">هدوءًا أثناء الاختبار</span><span class="example">رفقًا بالصغير</span></div>
+<div class="source">الثلاثة الأولى من دفتر التيسير؛ الأخيران للتدريب.</div></div></div>
+
+<div class="roleItem"><button class="roleToggle">٥. المبتدأ المشتق الذي لا خبر له <small>هو نفسه المسند في هذه الصورة</small></button><div class="roleBody">
+<div class="examples"><span class="example">ما ناجحٌ الكسولُ</span><span class="example">أراغبٌ أنت عن آلهتي؟</span><span class="example">أمحترمٌ الرجلُ الخلوقُ؟</span><span class="example">أقادمٌ المسافرُ؟</span><span class="example">أمقبولٌ العذرُ؟</span></div>
+<div class="source">الثلاثة الأولى من دفتر التيسير؛ الأخيران للتدريب.</div></div></div>
+</div>
+</div>
+</section>
+
+<section class="view" data-panel="identify">
+<div class="head"><div><h2>التعيين السريع</h2><div class="sub">بنك كبير؛ يُسحب منه سؤال جديد دون الالتزام بتسلسل ثابت. اضغط المسند إليه ثم المسند.</div></div><span class="pill" id="idCounter"></span></div>
+<div class="card">
+<div class="sentence" id="idSentence"></div>
+<div class="chips" id="idChips"></div>
+<div class="feedback" id="idFeedback"></div>
+<div class="actions"><button class="secondary" id="idSkip">بدّل المثال</button><button class="primary" id="idNext" disabled>التالي</button></div>
+</div>
+</section>
+
+<section class="view" data-panel="role">
+<div class="head"><div><h2>اختبار الموقع</h2><div class="sub">مرة يسألك عن المسند إليه، ومرة عن المسند، ومرة عن فرع داخل «ما كان أصله…».</div></div><span class="pill" id="roleCounter"></span></div>
+<div class="card">
+<div class="qtitle" id="roleQ"></div>
+<div class="opts" id="roleOpts"></div>
+<div class="feedback" id="roleFeedback"></div>
+<div class="actions"><button class="primary" id="roleNext" disabled>التالي</button></div>
+</div>
+</section>
+
+<section class="view" data-panel="special">
+<div class="head"><div><h2>الحالات الخاصة التي يجب ألا تُهمل</h2><div class="sub">ثماني حالات قصيرة، بعضها ورد مباشرة في الدفتر وبعضها تدريب على الصورة نفسها.</div></div><span class="pill">٨ حالات</span></div>
+<div class="caseGrid">
+<article class="case"><div class="label">فاعل مستتر</div><div class="ex">احمِ وطنك.</div><button class="secondary reveal">اكشف</button><div class="answer"><b>المسند:</b> احمِ.<br><b>المسند إليه:</b> ضمير مستتر تقديره أنت.</div></article>
+<article class="case"><div class="label">نائب فاعل</div><div class="ex">قُضِيَ الأمرُ.</div><button class="secondary reveal">اكشف</button><div class="answer"><b>المسند:</b> قُضِيَ.<br><b>المسند إليه:</b> الأمر — نائب فاعل.</div></article>
+<article class="case"><div class="label">اسم إن</div><div class="ex">إنك عاجزٌ.</div><button class="secondary reveal">اكشف</button><div class="answer"><b>المسند إليه:</b> الكاف — اسم إن، وأصله مبتدأ.<br><b>المسند:</b> عاجز — خبر إن، وأصله خبر.</div></article>
+<article class="case"><div class="label">اسم ليس</div><div class="ex">لستُ به للخير متبعًا.</div><button class="secondary reveal">اكشف</button><div class="answer"><b>المسند إليه:</b> التاء — اسم ليس.<br><b>المسند:</b> متبعًا (ويورد الدفتر: به للخير متبعًا).</div></article>
+<article class="case"><div class="label">مفعولا ظن</div><div class="ex">ظننتُ العاملَ مستيقظًا.</div><button class="secondary reveal">اكشف</button><div class="answer"><b>المسند إليه:</b> العامل — المفعول الأول وأصله مبتدأ.<br><b>المسند:</b> مستيقظًا — المفعول الثاني وأصله خبر.</div></article>
+<article class="case"><div class="label">مبتدأ مشتق</div><div class="ex">هل حاضرٌ أبوك؟</div><button class="secondary reveal">اكشف</button><div class="answer"><b>المسند:</b> حاضر — مبتدأ مشتق لا خبر له.<br><b>المسند إليه:</b> أبوك — مرفوع سد مسد الخبر.</div></article>
+<article class="case"><div class="label">مصدر نائب عن فعل الأمر</div><div class="ex">بالوالدين إحسانًا.</div><button class="secondary reveal">اكشف</button><div class="answer"><b>المسند:</b> إحسانًا — مصدر نائب عن فعل الأمر.<br><b>المسند إليه:</b> فاعل محذوف مفهوم من السياق.</div></article>
+<article class="case"><div class="label">مسند جار ومجرور في سؤال نهائي</div><div class="ex">لهم وجوهٌ.</div><button class="secondary reveal">اكشف</button><div class="answer">وفق جدول الاختبارات في الدفتر: <b>المسند:</b> لهم، <b>المسند إليه:</b> وجوه.</div></article>
+</div>
+</section>
+
+<section class="view" data-panel="extras">
+<div class="head"><div><h2>ما ليس مسندًا ولا مسندًا إليه</h2><div class="sub">الدفتر ينبه إلى أن ما يزيد على الركنين يُعد قيدًا أو متعلقًا، مثل المفعول به والجار والمجرور والظرف والحال وغيرها.</div></div><span class="pill" id="extraCounter"></span></div>
+<div class="matrix"><div class="box">مسند إليه<small>المحكوم عليه</small></div><div class="box">مسند<small>الحكم</small></div><div class="box">قيد / متعلق<small>ليس طرفًا أصليًا</small></div></div>
+<div class="card">
+<div class="qtitle" id="extraQ"></div>
+<div class="opts" id="extraOpts"></div>
+<div class="feedback" id="extraFeedback"></div>
+<div class="actions"><button class="primary" id="extraNext" disabled>التالي</button></div>
+</div>
+</section>
+
+<section class="view" data-panel="exam">
+<div class="head"><div><h2>محاكاة النهائي — بنك موسع</h2><div class="sub">كل محاولة تختار ١٥ سؤالًا من بنك أكبر، وتخلط ترتيب الخيارات تلقائيًا؛ لذلك لا يمكن توقع موضع الإجابة الصحيحة.</div></div><span class="pill" id="examCounter"></span></div>
+<div class="card" id="examCard">
+<div class="examMeta"><span class="tag" id="examYear"></span><span class="tag" id="examType"></span></div>
+<div class="qtitle" id="examQ"></div>
+<div class="opts" id="examOpts"></div>
+<div class="feedback" id="examFeedback"></div>
+<div class="actions"><button class="primary" id="examNext" disabled>التالي</button><button class="secondary" id="examRestart">اختبار جديد</button></div>
+</div>
+<div class="examFinal" id="examFinal" hidden>
+<strong id="examResult"></strong>
+<div id="examNote" class="sub"></div>
+<div class="miniStats"><div><b id="examCorrect"></b><span>صحيح</span></div><div><b id="examWrong"></b><span>خطأ</span></div><div><b id="examPct"></b><span>النسبة</span></div></div>
+<div class="actions" style="justify-content:center"><button class="primary" id="examAgain">محاكاة جديدة</button></div>
+</div>
+</section>
+
+<section class="view" data-panel="summary">
+<div class="head"><div><h2>الخلاصة التي تدخل بها الاختبار</h2><div class="sub">لا تحفظ الجملة كاملة؛ احفظ مسار القرار.</div></div><span class="pill">٤ خطوات</span></div>
+<div class="card">
+<div class="matrix">
+<div class="box">١<small>حدّد المحكوم عليه</small></div>
+<div class="box">٢<small>حدّد الحكم</small></div>
+<div class="box">٣<small>سمِّ موقع كل طرف</small></div>
+</div>
+<div class="feedback"><strong>المسند إليه:</strong> مبتدأ · ما كان أصله مبتدأ · فاعل · نائب فاعل · مرفوع المبتدأ المشتق.<br><br><strong>المسند:</strong> خبر · ما كان أصله خبرًا · فعل · مصدر نائب عن فعل الأمر · مبتدأ مشتق لا خبر له.</div>
+<div class="feedback"><strong>ثم اسأل:</strong> هل بقيت كلمات في الجملة؟ قد تكون قيودًا أو متعلقات، ولا تجعلها طرفًا من طرفي الإسناد لمجرد قربها من الفعل أو المبتدأ.</div>
+</div>
+</section>
+
+<div class="footer">مدرسة الإمام المهنا بن سلطان · إعداد: د. ماجد الحسيني · مختبر تفاعلي لدرس المسند والمسند إليه</div>
+</section>
+</div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const ar=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let score=0; const earned=new Set(); const add=k=>{if(!earned.has(k)){earned.add(k);score++;$('#score').textContent=ar(score)}};
+
+const tabs=$$('.tab'), views=$$('.view');
+tabs.forEach((t,i)=>t.onclick=()=>{tabs.forEach(x=>x.setAttribute('aria-selected','false'));t.setAttribute('aria-selected','true');views.forEach(v=>v.classList.toggle('active',v.dataset.panel===t.dataset.view));$('#progress').style.width=((i+1)/tabs.length*100)+'%';scrollTo({top:0,behavior:'smooth'})});
+
+const discover=[
+['العلمُ نورٌ',[['العلمُ','se'],['نورٌ','s']],'العلم هو المحكوم عليه.','نور هو الحكم.'],
+['وصلَ المسافرُ مساءً',[['وصلَ','s'],['المسافرُ','se'],['مساءً','q']],'المسافر فاعل ومحكوم عليه.','وصل فعل وحكم.'],
+['كانت السماءُ صافيةً',[['كانت','q'],['السماءُ','se'],['صافيةً','s']],'السماء اسم كان وأصله مبتدأ.','صافية خبر كان وأصله خبر.'],
+['إنَّ الطالبَ مجتهدٌ',[['إنَّ','q'],['الطالبَ','se'],['مجتهدٌ','s']],'الطالب اسم إن وأصله مبتدأ.','مجتهد خبر إن وأصله خبر.'],
+['فُتِحَ البابُ',[['فُتِحَ','s'],['البابُ','se']],'الباب نائب فاعل وهو المسند إليه.','فُتح هو الفعل والمسند.'],
+['أقادمٌ أخوك؟',[['أقادمٌ','s'],['أخوك','se']],'أخوك مرفوع المبتدأ المشتق، وهو المسند إليه.','قادم مبتدأ مشتق لا خبر له، وهو المسند.']
+];let di=0;
+function drawDiscover(){const x=discover[di];$('#dSentence').textContent=x[0];$('#dChips').innerHTML=x[1].map(p=>`<button class="chip" data-r="${p[1]}">${p[0]}</button>`).join('');$('#dFeedback').textContent='اضغط الكلمات لتكشف الطرفين.'}
+$('#dChips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;const x=discover[di];if(b.dataset.r==='se'){b.classList.add('se');$('#dFeedback').innerHTML='<strong>مسند إليه:</strong> '+x[2];add('dse'+di)}else if(b.dataset.r==='s'){b.classList.add('s');$('#dFeedback').innerHTML='<strong>مسند:</strong> '+x[3];add('ds'+di)}else{b.classList.add('bad');$('#dFeedback').textContent='هذا جزء زائد على طرفي الإسناد في هذا المثال.'}};
+$('#dNext').onclick=()=>{di=(di+1)%discover.length;drawDiscover()};drawDiscover();
+
+$$('.roleToggle').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+
+const identifyBank=[
+['الحياةُ كفاحٌ',[['الحياةُ','se'],['كفاحٌ','s']]],
+['المسلمون منتصرون',[['المسلمون','se'],['منتصرون','s']]],
+['ظل الرجلُ مشغولًا',[['ظل','q'],['الرجلُ','se'],['مشغولًا','s']]],
+['لعل الحقَّ يظهر',[['لعل','q'],['الحقَّ','se'],['يظهر','s']]],
+['حسبتُ الصديقَ مسافرًا',[['حسبتُ','q'],['الصديقَ','se'],['مسافرًا','s']]],
+['اقتربت الساعةُ',[['اقتربت','s'],['الساعةُ','se']]],
+['احمِ وطنك',[['احمِ','s'],['وطنك','q'],['أنتَ (مستتر)','se']]],
+['قُضِيَ الأمرُ',[['قُضِيَ','s'],['الأمرُ','se']]],
+['يُكرَم الضيفُ',[['يُكرَم','s'],['الضيفُ','se']]],
+['ما قائمٌ زيدٌ',[['ما','q'],['قائمٌ','s'],['زيدٌ','se']]],
+['ما مجحودٌ فضلُكم',[['ما','q'],['مجحودٌ','s'],['فضلُكم','se']]],
+['المعلمات مجتهداتٌ',[['المعلمات','se'],['مجتهداتٌ','s']]],
+['أضحى النصرُ قريبًا',[['أضحى','q'],['النصرُ','se'],['قريبًا','s']]],
+['وجدتُ الوفاءَ نادرًا',[['وجدتُ','q'],['الوفاءَ','se'],['نادرًا','s']]],
+['خلتُك مؤدبًا',[['خلتُ','q'],['الكاف','se'],['مؤدبًا','s']]],
+['نام الطفلُ',[['نام','s'],['الطفلُ','se']]],
+['بالوالدين إحسانًا',[['بالوالدين','q'],['إحسانًا','s'],['فاعل محذوف','se']]],
+['ما ناجحٌ الكسولُ',[['ما','q'],['ناجحٌ','s'],['الكسولُ','se']]],
+['لهم وجوهٌ',[['لهم','s'],['وجوهٌ','se']]],
+['يقضي على الجور عدلُه',[['يقضي','s'],['على الجور','q'],['عدلُه','se']]]
+];
+let idOrder=shuffle(identifyBank.map((_,i)=>i)), idPos=0, idStep=0;
+function drawId(){if(idPos>=idOrder.length){idOrder=shuffle(identifyBank.map((_,i)=>i));idPos=0}const x=identifyBank[idOrder[idPos]];idStep=0;$('#idSentence').textContent=x[0];$('#idChips').innerHTML=x[1].map(p=>`<button class="chip" data-r="${p[1]}">${p[0]}</button>`).join('');$('#idFeedback').textContent='ابدأ بالمسند إليه، ثم المسند.';$('#idNext').disabled=true;$('#idCounter').textContent=`${ar(idPos+1)} / ${ar(idOrder.length)}`}
+$('#idChips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;if(idStep===0){if(b.dataset.r==='se'){b.classList.add('se');idStep=1;$('#idFeedback').innerHTML='<strong>صحيح.</strong> الآن اختر المسند.';add('idse'+idOrder[idPos])}else{b.classList.add('bad');$('#idFeedback').textContent='ليس هذا المحكوم عليه.'}}else if(idStep===1){if(b.dataset.r==='s'){b.classList.add('s');idStep=2;$('#idFeedback').innerHTML='<strong>أحسنت.</strong> اكتملت علاقة الإسناد.';$('#idNext').disabled=false;add('ids'+idOrder[idPos])}else{b.classList.add('bad');$('#idFeedback').textContent='ليس هذا الحكم.'}}};
+function nextId(){idPos++;drawId()}$('#idNext').onclick=nextId;$('#idSkip').onclick=nextId;drawId();
+
+const roleBank=[
+['ما موقع «الحياة» في: الحياة كفاح؟','المبتدأ',['المبتدأ','الخبر','الفاعل','نائب الفاعل']],
+['ما موقع «الشمس» في: كانت الشمس مشرقة؟','اسم كان — ما كان أصله مبتدأ',['اسم كان — ما كان أصله مبتدأ','خبر كان — ما كان أصله خبرًا','فاعل','مبتدأ']],
+['ما موقع «مشرقة» في: كانت الشمس مشرقة؟','خبر كان — ما كان أصله خبرًا',['خبر كان — ما كان أصله خبرًا','اسم كان — ما كان أصله مبتدأ','خبر مبتدأ','حال']],
+['ما موقع «البحر» في: إن البحر هائج؟','اسم إن — ما كان أصله مبتدأ',['اسم إن — ما كان أصله مبتدأ','خبر إن','فاعل','نائب فاعل']],
+['ما موقع «هائج» في: إن البحر هائج؟','خبر إن — ما كان أصله خبرًا',['خبر إن — ما كان أصله خبرًا','اسم إن','خبر كان','مبتدأ']],
+['ما موقع «العامل» في: ظننت العامل مستيقظًا؟','المفعول الأول — ما كان أصله مبتدأ',['المفعول الأول — ما كان أصله مبتدأ','المفعول الثاني — ما كان أصله خبرًا','فاعل','خبر']],
+['ما موقع «مستيقظًا» في: ظننت العامل مستيقظًا؟','المفعول الثاني — ما كان أصله خبرًا',['المفعول الثاني — ما كان أصله خبرًا','المفعول الأول — ما كان أصله مبتدأ','حال فقط','فاعل']],
+['ما موقع «الأبطال» في: انتصر الأبطال؟','الفاعل',['الفاعل','نائب الفاعل','المبتدأ','الخبر']],
+['ما موقع «الزجاج» في: كسر الزجاج؟','نائب الفاعل',['نائب الفاعل','الفاعل','المبتدأ','المفعول به']],
+['ما موقع «فضلُكم» في: ما مجحود فضلُكم؟','مرفوع المبتدأ المشتق',['مرفوع المبتدأ المشتق','خبر المبتدأ','فاعل فعل','نائب فاعل']],
+['ما موقع «كفاح» في: الحياة كفاح؟','الخبر',['الخبر','المبتدأ','الفعل','الحال']],
+['ما موقع «قريبًا» في: أضحى النصر قريبًا؟','خبر أضحى — ما كان أصله خبرًا',['خبر أضحى — ما كان أصله خبرًا','اسم أضحى','حال','مفعول به']],
+['ما موقع «نادرًا» في: وجدت الوفاء نادرًا؟','المفعول الثاني — ما كان أصله خبرًا',['المفعول الثاني — ما كان أصله خبرًا','المفعول الأول','حال','خبر كان']],
+['ما موقع «يأبى» في: يأبى العربي الضيم؟','الفعل — مسند',['الفعل — مسند','الفاعل — مسند إليه','مفعول به','خبر']],
+['ما موقع «إحسانًا» في: بالوالدين إحسانًا؟','مصدر نائب عن فعل الأمر — مسند',['مصدر نائب عن فعل الأمر — مسند','مفعول به','مفعول مطلق','خبر']],
+['ما موقع «ناجح» في: ما ناجح الكسول؟','مبتدأ مشتق لا خبر له — مسند',['مبتدأ مشتق لا خبر له — مسند','خبر','فاعل','نائب فاعل']]
+];
+let rOrder=shuffle(roleBank.map((_,i)=>i)), rp=0;
+function drawRole(){if(rp>=rOrder.length){rOrder=shuffle(roleBank.map((_,i)=>i));rp=0}const x=roleBank[rOrder[rp]];$('#roleQ').textContent=x[0];const opts=shuffle(x[2]);$('#roleOpts').innerHTML=opts.map(o=>`<button class="opt" data-o="${o}">${o}</button>`).join('');$('#roleFeedback').textContent='اختر الموقع الأدق.';$('#roleNext').disabled=true;$('#roleCounter').textContent=`${ar(rp+1)} / ${ar(rOrder.length)}`}
+$('#roleOpts').onclick=e=>{const b=e.target.closest('.opt');if(!b||b.disabled)return;const x=roleBank[rOrder[rp]];$$('#roleOpts .opt').forEach(z=>z.disabled=true);if(b.dataset.o===x[1]){b.classList.add('good');$('#roleFeedback').innerHTML='<strong>صحيح.</strong>';add('role'+rOrder[rp])}else{b.classList.add('bad');$$('#roleOpts .opt').find(z=>z.dataset.o===x[1])?.classList.add('good');$('#roleFeedback').innerHTML='الصحيح: <strong>'+x[1]+'</strong>.'}$('#roleNext').disabled=false};
+$('#roleNext').onclick=()=>{rp++;drawRole()};drawRole();
+
+$$('.reveal').forEach(b=>b.onclick=()=>b.closest('.case').classList.add('open'));
+
+const extraBank=[
+['في «قرأ الطالبُ <span class="focus">الكتابَ</span>» ما وظيفة الجزء المحدد؟','قيد / متعلق',['مسند إليه','مسند','قيد / متعلق'],'الكتاب مفعول به، وليس طرفًا أصليًا في الإسناد.'],
+['في «قرأ <span class="focus">الطالبُ</span> الكتاب» ما وظيفة الجزء المحدد؟','مسند إليه',['مسند إليه','مسند','قيد / متعلق'],'الطالب فاعل، فهو المسند إليه.'],
+['في «<span class="focus">قرأ</span> الطالبُ الكتاب» ما وظيفة الجزء المحدد؟','مسند',['مسند إليه','مسند','قيد / متعلق'],'قرأ فعل، وهو الحكم المسند إلى الطالب.'],
+['في «يغرد البلبلُ <span class="focus">صباحًا</span>» ما وظيفة الجزء المحدد؟','قيد / متعلق',['مسند إليه','مسند','قيد / متعلق'],'صباحًا ظرف زمان.'],
+['في «يقضي <span class="focus">على الجور</span> عدلُه» ما وظيفة الجزء المحدد؟','قيد / متعلق',['مسند إليه','مسند','قيد / متعلق'],'الجار والمجرور متعلق بالفعل.'],
+['في «أضحى النصر قريبًا <span class="focus">اليوم</span>» ما وظيفة الجزء المحدد؟','قيد / متعلق',['مسند إليه','مسند','قيد / متعلق'],'اليوم ظرف زمان.'],
+['في «عاد الطالبُ <span class="focus">مسرورًا</span>» ما وظيفة الجزء المحدد؟','قيد / متعلق',['مسند إليه','مسند','قيد / متعلق'],'مسرورًا حال، وليس أحد طرفي الإسناد.'],
+['في «فهم الطالبُ الدرسَ <span class="focus">فهمًا</span> جيدًا» ما وظيفة الجزء المحدد؟','قيد / متعلق',['مسند إليه','مسند','قيد / متعلق'],'فهمًا مفعول مطلق.'],
+['في «إن البحرَ <span class="focus">هائجٌ</span>» ما وظيفة الجزء المحدد؟','مسند',['مسند إليه','مسند','قيد / متعلق'],'هائج خبر إن وأصله خبر، فهو المسند.'],
+['في «كُسِر <span class="focus">الزجاجُ</span>» ما وظيفة الجزء المحدد؟','مسند إليه',['مسند إليه','مسند','قيد / متعلق'],'الزجاج نائب فاعل، فهو المسند إليه.']
+];
+let ep=0,eOrder=shuffle(extraBank.map((_,i)=>i));
+function drawExtra(){if(ep>=eOrder.length){eOrder=shuffle(extraBank.map((_,i)=>i));ep=0}const x=extraBank[eOrder[ep]];$('#extraQ').innerHTML=x[0];$('#extraOpts').innerHTML=shuffle(x[2]).map(o=>`<button class="opt" data-o="${o}">${o}</button>`).join('');$('#extraFeedback').textContent='اختر التصنيف.';$('#extraNext').disabled=true;$('#extraCounter').textContent=`${ar(ep+1)} / ${ar(eOrder.length)}`}
+$('#extraOpts').onclick=e=>{const b=e.target.closest('.opt');if(!b||b.disabled)return;const x=extraBank[eOrder[ep]];$$('#extraOpts .opt').forEach(z=>z.disabled=true);if(b.dataset.o===x[1]){b.classList.add('good');add('extra'+eOrder[ep])}else{b.classList.add('bad');$$('#extraOpts .opt').find(z=>z.dataset.o===x[1])?.classList.add('good')}$('#extraFeedback').textContent=x[3];$('#extraNext').disabled=false};
+$('#extraNext').onclick=()=>{ep++;drawExtra()};drawExtra();
+
+const examBank=[
+{y:'٢٠١١ / ٢٠١٢',t:'تعيين الطرفين',q:'في «إذا ما استُلَّ روحي» ما المسند والمسند إليه؟',a:'المسند: استُلَّ · المسند إليه: روحي',o:['المسند: استُلَّ · المسند إليه: روحي','المسند: روحي · المسند إليه: استُلَّ','المسند: إذا · المسند إليه: روحي','المسند: ما · المسند إليه: استُلَّ']},
+{y:'٢٠١٢ / ٢٠١٣',t:'تعيين الطرفين',q:'في «لستُ به للخير متبعًا» ما الطرفان بحسب جواب الدفتر؟',a:'المسند: متبعًا · المسند إليه: التاء اسم ليس',o:['المسند: متبعًا · المسند إليه: التاء اسم ليس','المسند: لست · المسند إليه: الخير','المسند: الخير · المسند إليه: التاء','المسند: به · المسند إليه: متبعًا']},
+{y:'٢٠١٢ / ٢٠١٣',t:'تعيين الطرفين',q:'في «لهم وجوهٌ» ما الطرفان؟',a:'المسند: لهم · المسند إليه: وجوه',o:['المسند: لهم · المسند إليه: وجوه','المسند: وجوه · المسند إليه: لهم','المسند: هم · المسند إليه: وجوه','المسند: وجوه · المسند إليه: ضمير مستتر']},
+{y:'٢٠١٣ / ٢٠١٤',t:'تعيين الطرفين',q:'في «لساني وسيفي صارمان كلاهما» أي اختيار يوافق جدول الدفتر؟',a:'المسند: صارمان · المسند إليه: لساني',o:['المسند: صارمان · المسند إليه: لساني','المسند: لساني · المسند إليه: صارمان','المسند: كلاهما · المسند إليه: سيفي','المسند: سيفي · المسند إليه: كلاهما']},
+{y:'٢٠١٣ / ٢٠١٤',t:'تعيين الطرفين',q:'في «يعتصر عودي على الجهد» ما الطرفان؟',a:'المسند: يعتصر · المسند إليه: عودي',o:['المسند: يعتصر · المسند إليه: عودي','المسند: عودي · المسند إليه: الجهد','المسند: على الجهد · المسند إليه: عودي','المسند: الجهد · المسند إليه: يعتصر']},
+{y:'٢٠١٤ / ٢٠١٥',t:'تعيين الطرفين',q:'في «يكون لها غطاء» ما الطرفان بحسب الدفتر؟',a:'المسند: لها · المسند إليه: غطاء',o:['المسند: لها · المسند إليه: غطاء','المسند: يكون · المسند إليه: غطاء','المسند: غطاء · المسند إليه: لها','المسند: يكون · المسند إليه: ضمير مستتر']},
+{y:'٢٠١٤ / ٢٠١٥',t:'تعيين الطرفين',q:'في «كثرت عيوبك» ما الطرفان؟',a:'المسند: كثرت · المسند إليه: عيوبك',o:['المسند: كثرت · المسند إليه: عيوبك','المسند: عيوبك · المسند إليه: كثرت','المسند: كثرت · المسند إليه: الكاف','المسند: عيوب · المسند إليه: الكاف']},
+{y:'٢٠١٥ / ٢٠١٦',t:'تعيين الطرفين',q:'في «وقد علقت للكفر فيهم مخالبه» ما الطرفان بحسب الدفتر؟',a:'المسند: علق · المسند إليه: مخالبه',o:['المسند: علق · المسند إليه: مخالبه','المسند: مخالبه · المسند إليه: الكفر','المسند: للكفر · المسند إليه: مخالبه','المسند: فيهم · المسند إليه: علق']},
+{y:'٢٠١٥ / ٢٠١٦',t:'تعيين الطرفين',q:'في «فكان الدهر أفصح ناطق» ما الطرفان؟',a:'المسند: أفصح ناطق · المسند إليه: الدهر',o:['المسند: أفصح ناطق · المسند إليه: الدهر','المسند: كان · المسند إليه: الدهر','المسند: الدهر · المسند إليه: أفصح','المسند: ناطق · المسند إليه: كان']},
+{y:'٢٠١٦ / ٢٠١٧',t:'تعيين الطرفين',q:'في «ولذيذ الحياة أنفس في النفس» ما الطرفان بحسب الجدول؟',a:'المسند: أنفس · المسند إليه: لذيذ',o:['المسند: أنفس · المسند إليه: لذيذ','المسند: لذيذ · المسند إليه: الحياة','المسند: في النفس · المسند إليه: لذيذ','المسند: الحياة · المسند إليه: أنفس']},
+{y:'٢٠١٦ / ٢٠١٧',t:'تعيين الطرفين',q:'في «استكره الحديد» ما الطرفان بحسب دفتر التيسير؟',a:'المسند: استكره · المسند إليه: الحديد',o:['المسند: استكره · المسند إليه: الحديد','المسند: الحديد · المسند إليه: استكره','المسند: استكره · المسند إليه: ضمير مستتر','المسند: الحديد · المسند إليه: ضمير مستتر']},
+{y:'٢٠١٧ / ٢٠١٨',t:'تعيين الطرفين',q:'في «إني لمغلوب على الصبر» ما الطرفان؟',a:'المسند: مغلوب · المسند إليه: الياء اسم إن',o:['المسند: مغلوب · المسند إليه: الياء اسم إن','المسند: إن · المسند إليه: مغلوب','المسند: الصبر · المسند إليه: الياء','المسند: على الصبر · المسند إليه: إن']},
+{y:'٢٠١٧ / ٢٠١٨',t:'تعيين الطرفين',q:'في «يقضي على الجور عدله» ما الطرفان؟',a:'المسند: يقضي · المسند إليه: عدله',o:['المسند: يقضي · المسند إليه: عدله','المسند: عدله · المسند إليه: الجور','المسند: على الجور · المسند إليه: عدله','المسند: الجور · المسند إليه: يقضي']},
+{y:'٢٠١٨ / ٢٠١٩',t:'تعيين + موقع',q:'في «طما البحر» ما المسند إليه وموقعه؟',a:'البحر — فاعل',o:['البحر — فاعل','طما — فاعل','البحر — مبتدأ','طما — مسند إليه']},
+{y:'٢٠١٨ / ٢٠١٩',t:'تعيين + موقع',q:'في «إنك عاجز» ما المسند إليه وموقعه؟',a:'الكاف — اسم إن',o:['الكاف — اسم إن','عاجز — خبر إن','الكاف — فاعل','إن — مسند إليه']},
+
+{y:'تدريب موسع',t:'موقع المسند إليه',q:'في «كانت الشمس مشرقة» ما موقع المسند إليه؟',a:'اسم كان — ما كان أصله مبتدأ',o:['اسم كان — ما كان أصله مبتدأ','خبر كان — ما كان أصله خبرًا','فاعل','نائب فاعل']},
+{y:'تدريب موسع',t:'موقع المسند',q:'في «خلتك مؤدبًا» ما موقع «مؤدبًا»؟',a:'المفعول الثاني — ما كان أصله خبرًا',o:['المفعول الثاني — ما كان أصله خبرًا','المفعول الأول — ما كان أصله مبتدأ','حال','خبر إن']},
+{y:'تدريب موسع',t:'موقع المسند إليه',q:'في «قُضي الأمر» ما موقع «الأمر»؟',a:'نائب الفاعل',o:['نائب الفاعل','الفاعل','المبتدأ','المفعول به']},
+{y:'تدريب موسع',t:'موقع المسند',q:'في «بالوالدين إحسانًا» ما موقع «إحسانًا» في الدرس؟',a:'مصدر نائب عن فعل الأمر',o:['مصدر نائب عن فعل الأمر','مفعول به','حال','خبر']},
+{y:'تدريب موسع',t:'الحالة الخاصة',q:'في «هل حاضر أبوك؟» ما المسند؟',a:'حاضر — مبتدأ مشتق لا خبر له',o:['حاضر — مبتدأ مشتق لا خبر له','أبوك — مرفوع المبتدأ المشتق','هل — أداة استفهام','أبوك — فاعل فعل']},
+{y:'تدريب موسع',t:'الحالة الخاصة',q:'في «ما مجحود فضلكم» ما المسند إليه؟',a:'فضلكم — مرفوع المبتدأ المشتق',o:['فضلكم — مرفوع المبتدأ المشتق','مجحود — خبر','ما — مسند إليه','فضلكم — مفعول به']},
+{y:'تدريب موسع',t:'تمييز القيد',q:'في «يأبى العربي الضيم» أي جزء ليس مسندًا ولا مسندًا إليه؟',a:'الضيم',o:['الضيم','يأبى','العربي','لا يوجد']},
+{y:'تدريب موسع',t:'تمييز القيد',q:'في «يغرد البلبل صباحًا» أي جزء قيد زائد على طرفي الإسناد؟',a:'صباحًا',o:['صباحًا','يغرد','البلبل','لا يوجد']},
+{y:'تدريب موسع',t:'القاعدة',q:'أي قائمة تمثل مواقع المسند إليه الواردة في الدرس؟',a:'المبتدأ · ما كان أصله مبتدأ · الفاعل · نائب الفاعل · مرفوع المبتدأ المشتق',o:['المبتدأ · ما كان أصله مبتدأ · الفاعل · نائب الفاعل · مرفوع المبتدأ المشتق','الخبر · الفعل · الحال · المفعول به · المبتدأ','المبتدأ · الخبر · الفعل · المفعول به · الحال','الفاعل · الخبر · الظرف · الحال · التمييز']},
+{y:'تدريب موسع',t:'القاعدة',q:'أي قائمة تمثل مواقع المسند الواردة في الدرس؟',a:'الخبر · ما كان أصله خبرًا · الفعل · المصدر النائب عن فعل الأمر · المبتدأ المشتق',o:['الخبر · ما كان أصله خبرًا · الفعل · المصدر النائب عن فعل الأمر · المبتدأ المشتق','المبتدأ · الفاعل · نائب الفاعل · المفعول به · الحال','الخبر · الفاعل · المفعول المطلق · الظرف · الحال','الفعل · الفاعل · المبتدأ · الخبر · المضاف إليه']}
+];
+
+let examSet=[],xp=0,xcorrect=0,xwrong=0;
+function newExam(){
+ examSet=shuffle(examBank).slice(0,15);xp=0;xcorrect=0;xwrong=0;
+ $('#examCard').hidden=false;$('#examFinal').hidden=true;drawExam();
+}
+function drawExam(){
+ const x=examSet[xp];$('#examYear').textContent=x.y;$('#examType').textContent=x.t;$('#examQ').textContent=x.q;
+ const opts=shuffle(x.o);$('#examOpts').innerHTML=opts.map(o=>`<button class="opt" data-o="${o}">${o}</button>`).join('');
+ $('#examFeedback').textContent='اختر الإجابة الأدق.';$('#examNext').disabled=true;$('#examCounter').textContent=`${ar(xp+1)} / ${ar(examSet.length)}`;
+}
+$('#examOpts').onclick=e=>{
+ const b=e.target.closest('.opt');if(!b||b.disabled)return;const x=examSet[xp];$$('#examOpts .opt').forEach(z=>z.disabled=true);
+ if(b.dataset.o===x.a){b.classList.add('good');xcorrect++;$('#examFeedback').innerHTML='<strong>صحيح.</strong>';add('exam-'+x.q)}
+ else{b.classList.add('bad');xwrong++;$$('#examOpts .opt').find(z=>z.dataset.o===x.a)?.classList.add('good');$('#examFeedback').innerHTML='الصحيح: <strong>'+x.a+'</strong>.'}
+ $('#examNext').disabled=false;
+};
+$('#examNext').onclick=()=>{if(xp===examSet.length-1){const pct=Math.round(xcorrect/examSet.length*100);$('#examCard').hidden=true;$('#examFinal').hidden=false;$('#examResult').textContent=`${ar(xcorrect)} / ${ar(examSet.length)}`;$('#examCorrect').textContent=ar(xcorrect);$('#examWrong').textContent=ar(xwrong);$('#examPct').textContent=ar(pct)+'٪';$('#examNote').textContent=pct>=90?'إتقان قوي جدًا. جرّب محاكاة جديدة لأن البنك سيغيّر الأسئلة ومواضع الخيارات.':pct>=70?'مستوى جيد. راجع الحالات التي أخطأت فيها ثم ابدأ اختبارًا جديدًا.':'ارجع إلى جميع المواقع والحالات الخاصة، ثم أعد المحاكاة.'}else{xp++;drawExam()}};
+$('#examRestart').onclick=newExam;$('#examAgain').onclick=newExam;newExam();
+})();
+</script>
+</body>
+</html>
