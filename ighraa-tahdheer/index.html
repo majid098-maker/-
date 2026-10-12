@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#f4f1ea" />
+<title>مختبر القرار | الإغراء والتحذير</title>
+<style>
+:root{
+  --paper:#f4f1ea; --paper2:#ebe6dc; --ink:#171716; --muted:#6c6962; --line:#cfc8bc;
+  --warm:#d15f3f; --cool:#187f78; --gold:#ad8739; --white:#fffdf8; --shadow:0 18px 50px rgba(34,29,22,.08);
+  --r:22px; --max:1220px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,Arial,"Noto Sans Arabic",sans-serif;line-height:1.75}
+button,input,textarea,select{font:inherit} button{cursor:pointer} a{color:inherit;text-decoration:none}
+::selection{background:#1b1b1b;color:#fff}
+.site-top{position:sticky;top:0;z-index:30;background:rgba(244,241,234,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(23,23,22,.08)}
+.top-in{max-width:var(--max);margin:auto;min-height:70px;padding:10px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;gap:12px;align-items:center;min-width:0}.mark{width:36px;height:36px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-weight:800}.brand b{font-size:14px}.brand small{display:block;color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav{display:flex;gap:5px;align-items:center;overflow:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav a{font-size:12px;padding:9px 12px;border-radius:999px;white-space:nowrap}.nav a:hover{background:#e8e2d7}
+.progress-pill{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);white-space:nowrap}.dot{width:8px;height:8px;border-radius:50%;background:var(--cool);box-shadow:0 0 0 5px rgba(24,127,120,.1)}
+.hero{min-height:calc(100svh - 70px);display:grid;grid-template-columns:1.05fr .95fr;max-width:var(--max);margin:auto;padding:42px 22px 30px;gap:44px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);letter-spacing:.02em}.eyebrow i{width:38px;height:1px;background:var(--ink);display:inline-block}
+h1{font-size:clamp(48px,7.5vw,108px);line-height:.92;margin:20px 0 22px;letter-spacing:-.045em}.hero h1 span{display:block;color:var(--warm)}
+.lead{font-size:clamp(17px,2vw,23px);max-width:650px;color:#34322f;margin:0 0 16px}.author-line{display:inline-flex;align-items:center;gap:9px;margin:0 0 28px;padding:7px 0;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}.author-line b{color:var(--ink);font-weight:800}.hero-actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:12px 18px;border-radius:999px;font-weight:700}.btn.primary{background:var(--ink);color:white}.btn:hover{transform:translateY(-1px)}
+.hero-stage{height:min(650px,72vh);min-height:480px;position:relative;border-right:1px solid var(--line);overflow:hidden}
+.axis{position:absolute;inset:8% 16% 8% 16%;display:grid;grid-template-rows:1fr auto 1fr;align-items:center}.pole{font-size:clamp(26px,4vw,50px);font-weight:800;display:flex;align-items:center;gap:12px}.pole.top{color:var(--cool)}.pole.bottom{color:var(--warm);align-self:end}.pole em{font-style:normal;font-size:12px;font-weight:500;color:var(--muted)}
+.core{height:170px;width:170px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;text-align:center;position:relative;background:var(--paper);box-shadow:var(--shadow);margin:auto}.core:before,.core:after{content:"";position:absolute;left:50%;width:1px;background:var(--ink);height:115px}.core:before{bottom:100%}.core:after{top:100%}.core strong{font-size:27px;line-height:1.25}.core small{display:block;color:var(--muted);font-weight:400;font-size:11px;margin-top:7px}
+.floating{position:absolute;font-size:12px;padding:7px 10px;border:1px solid var(--line);background:rgba(255,253,248,.75);backdrop-filter:blur(8px)}.f1{top:9%;left:4%;transform:rotate(-4deg)}.f2{top:24%;right:3%;transform:rotate(5deg)}.f3{bottom:19%;left:5%;transform:rotate(3deg)}.f4{bottom:7%;right:7%;transform:rotate(-5deg)}
+.section{max-width:var(--max);margin:auto;padding:100px 22px}.section-head{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;border-top:1px solid var(--ink);padding-top:22px;margin-bottom:44px}.num{font-size:12px;color:var(--muted)}.section h2{font-size:clamp(35px,5vw,70px);line-height:1.02;margin:4px 0 0;letter-spacing:-.035em}.section-intro{font-size:18px;color:#45423d;max-width:720px;margin:8px 0 0}
+.lab{background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow);min-height:430px;display:grid;grid-template-columns:230px 1fr}
+.lab-side{border-left:1px solid var(--line);padding:24px 18px;display:flex;flex-direction:column;justify-content:space-between}.lab-side strong{font-size:14px}.lab-side p{font-size:12px;color:var(--muted);margin:8px 0}.lab-meter{height:3px;background:#ddd5c9}.lab-meter i{display:block;height:100%;background:var(--ink);width:0;transition:.35s}.lab-main{padding:clamp(24px,5vw,68px);display:flex;flex-direction:column;justify-content:center;min-width:0}
+.context-label{font-size:12px;color:var(--muted);margin-bottom:14px}.prompt{font-size:clamp(28px,4.5vw,62px);font-weight:800;line-height:1.2;margin:0 0 22px;letter-spacing:-.02em}.subprompt{font-size:15px;color:var(--muted);max-width:760px;margin:0 0 26px}.choice-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.choice{min-height:82px;border:1px solid var(--line);background:#fffdfa;text-align:right;padding:17px 18px;font-weight:800;font-size:17px;transition:.2s}.choice small{display:block;color:var(--muted);font-weight:400;font-size:11px;margin-top:4px}.choice:hover{border-color:var(--ink);transform:translateY(-2px)}.choice.good{background:#e7f1ef;border-color:var(--cool)}.choice.bad{background:#f5e5df;border-color:var(--warm)}
+.feedback{margin-top:18px;border-top:1px solid var(--line);padding-top:18px;display:none}.feedback.show{display:block}.feedback b{font-size:18px}.feedback p{color:var(--muted);margin:5px 0}.next{align-self:flex-start;margin-top:14px;border:0;background:var(--ink);color:white;padding:10px 16px;border-radius:999px}
+.strip{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:transparent;padding:8px 12px;border-radius:999px;font-size:12px}.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pattern-stage{display:grid;grid-template-columns:1fr .85fr;gap:34px;align-items:start}.pattern-display{min-height:260px;border-right:4px solid var(--ink);padding:18px 30px}.pattern-display .formula{font-size:12px;color:var(--muted);margin-bottom:25px}.pattern-display .sentence{font-size:clamp(30px,5vw,58px);font-weight:800;line-height:1.35}.pattern-display .rule{margin-top:24px;font-size:14px}.pattern-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}.pattern-btn{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:right}.pattern-btn span{color:var(--muted);font-size:12px}.pattern-btn.active{font-weight:800}.pattern-btn.active span{color:var(--warm)}
+.delete-box{display:grid;grid-template-columns:1.15fr .85fr;gap:40px}.delete-word{font-size:clamp(44px,7vw,90px);font-weight:900;line-height:1.2;min-height:200px;display:flex;align-items:center}.ghost{color:#aaa49b;font-weight:500;font-size:.48em;margin-left:12px;opacity:.55}.binary{display:grid;gap:10px;align-content:center}.binary button{border:1px solid var(--ink);background:transparent;padding:16px;text-align:right;font-weight:800}.binary button:hover{background:var(--ink);color:white}.mini-rule{font-size:12px;color:var(--muted);margin-top:15px}
+.meaning-stage{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}.meaning-pane{background:var(--white);padding:34px;min-height:360px}.meaning-pane h3{font-size:14px;color:var(--muted);margin:0 0 14px}.same-phrase{font-size:45px;font-weight:900;margin:20px 0}.ctx{min-height:100px;font-size:18px}.verb-reveal{display:none;border-top:1px solid var(--line);padding-top:18px;margin-top:24px}.verb-reveal.show{display:block}.verb{font-size:46px;font-weight:900}.verb.cool{color:var(--cool)}.verb.warm{color:var(--warm)}
+.parse-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:stretch}.parse-sentence{background:var(--ink);color:white;min-height:380px;padding:42px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;align-content:center}.token{border:1px solid rgba(255,255,255,.28);background:transparent;color:white;padding:11px 14px;font-size:clamp(22px,3.6vw,42px);font-weight:800}.token.active{background:white;color:var(--ink)}.parse-panel{border-top:1px solid var(--ink);padding-top:22px}.parse-panel .big{font-size:29px;font-weight:900;margin-bottom:8px}.parse-panel p{color:var(--muted)}
+.transform-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.task{border-top:1px solid var(--ink);padding-top:18px}.task .tag{font-size:11px;color:var(--muted)}.task h3{font-size:19px;margin:8px 0 12px}.task textarea{width:100%;min-height:96px;border:1px solid var(--line);background:rgba(255,255,255,.55);padding:12px;resize:vertical}.reveal{border:0;border-bottom:1px solid var(--ink);background:transparent;padding:8px 0;font-weight:800;margin-top:8px}.model{display:none;margin-top:10px;padding:12px 0;color:#35322f}.model.show{display:block}.source-note{font-size:11px;color:var(--muted)}
+.traps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.trap{background:var(--paper);padding:26px;min-height:220px}.trap .n{font-size:11px;color:var(--muted)}.trap h3{font-size:20px;line-height:1.4}.trap p{color:#55514a;font-size:14px}.trap strong{color:var(--warm)}
+.bank-tools{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:20px;flex-wrap:wrap}.filters{display:flex;gap:7px;flex-wrap:wrap}.bank-list{border-top:1px solid var(--ink)}.exam{border-bottom:1px solid var(--line);padding:24px 0}.exam-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.exam-meta{display:flex;gap:6px;flex-wrap:wrap}.badge{font-size:10px;padding:5px 8px;border:1px solid var(--line);border-radius:999px}.badge.official{border-color:var(--cool);color:var(--cool)}.badge.model-ok{background:var(--cool);color:#fff;border-color:var(--cool)}.badge.guide{border-color:var(--gold);color:#785d21}.exam h3{font-size:19px;margin:13px 0 10px}.stem{background:#ebe6dc;padding:15px;border-right:3px solid var(--ink);font-size:14px;margin:12px 0}.answer-space{width:100%;min-height:80px;border:1px solid var(--line);background:transparent;padding:12px}.answer-box{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:14px}.answer-box.show{display:block}.answer-box b{display:block;margin-bottom:4px}.warning{font-size:12px;color:#815a23;background:#f3ead6;padding:10px 12px;margin-top:10px}
+.sim-shell{background:var(--ink);color:white;padding:clamp(24px,5vw,55px)}.sim-top{display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:16px}.sim-top b{font-size:12px}.sim-score{font-size:12px;color:#bbb}.sim-q{padding:40px 0 25px}.sim-q h3{font-size:clamp(26px,4vw,50px);line-height:1.3;margin:0 0 16px}.sim-q p{color:#c7c7c7}.sim-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sim-option{border:1px solid #555;background:transparent;color:white;padding:14px;text-align:right}.sim-option:hover{background:#fff;color:#111}.sim-option.correct{background:#dff1ec;color:#173b34;border-color:#dff1ec}.sim-option.wrong{background:#f3dcd5;color:#6c2d1e;border-color:#f3dcd5}.sim-next{margin-top:18px;border:0;background:white;color:#111;padding:11px 17px;border-radius:999px}.sim-next:disabled{opacity:.35}.sim-finish{display:none;padding:35px 0}.sim-finish.show{display:block}.score-big{font-size:72px;font-weight:900}
+.sources{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px}.sources b{color:var(--ink)}
+.footer{max-width:var(--max);margin:auto;padding:40px 22px 80px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}
+.toast{position:fixed;left:18px;bottom:18px;z-index:50;background:var(--ink);color:white;padding:11px 14px;border-radius:12px;font-size:12px;opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:none}
+
+.lesson-page{display:none;min-height:calc(100svh - 70px);padding-bottom:100px}
+.lesson-page.active-page{display:block;animation:pageIn .38s ease both}
+.hero.lesson-page{display:none}.hero.lesson-page.active-page{display:grid}
+@keyframes pageIn{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+.page-switcher{position:fixed;z-index:28;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(23,23,22,.94);color:white;padding:7px;border-radius:999px;box-shadow:0 16px 50px rgba(0,0,0,.18);backdrop-filter:blur(12px)}
+.page-switcher button{border:0;background:transparent;color:white;padding:9px 14px;border-radius:999px;font-weight:700;white-space:nowrap}.page-switcher button:hover{background:rgba(255,255,255,.12)}.page-switcher button:disabled{opacity:.28;cursor:default}.page-switcher span{font-size:11px;color:#cfcfcf;min-width:72px;text-align:center}
+.nav a.active{background:var(--ink);color:white}
+.bank-stage{max-width:920px;margin-inline:auto;padding-bottom:76px}.bank-list{scroll-margin-top:118px}.bank-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}.lesson-page#bank.active-page .bank-nav{position:fixed;z-index:27;left:50%;bottom:78px;transform:translateX(-50%);width:min(720px,calc(100% - 32px));margin:0;padding:9px 10px;border:1px solid rgba(23,23,22,.12);border-radius:999px;background:rgba(255,253,248,.94);box-shadow:0 14px 42px rgba(24,20,15,.14);backdrop-filter:blur(14px)}.bank-nav button{border:1px solid var(--ink);background:transparent;padding:9px 14px;border-radius:999px;font-weight:700}.bank-nav button:disabled{opacity:.3}.exam-interaction{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.interaction-prompt{font-size:13px;color:var(--muted);margin-bottom:10px}.interactive-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.i-option{border:1px solid var(--line);background:#fffdfa;padding:12px 14px;text-align:right;transition:.18s}.i-option:hover{border-color:var(--ink);transform:translateY(-1px)}.i-option.selected{background:#ebe6dc;border-color:var(--ink)}.i-option.correct{background:#e7f1ef;border-color:var(--cool)}.i-option.wrong{background:#f5e5df;border-color:var(--warm)}
+.phrase-pick{display:flex;gap:7px;flex-wrap:wrap;line-height:2.2}.phrase-token{border:1px solid var(--line);background:transparent;padding:7px 10px;border-radius:8px}.phrase-token.selected{background:var(--ink);color:#fff;border-color:var(--ink)}.phrase-token.correct,.pair-row button.correct{background:#e7f1ef;color:#173b34;border-color:var(--cool)}.phrase-token.wrong,.pair-row button.wrong{background:#f5e5df;color:#6c2d1e;border-color:var(--warm)}.follow-box{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}.pair-grid{display:grid;gap:10px}.pair-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;border:1px solid var(--line);padding:12px}.pair-row .scenario{font-size:14px}.pair-row button{border:1px solid var(--line);background:transparent;padding:8px 12px;border-radius:999px}.pair-row button.selected{background:var(--ink);color:white;border-color:var(--ink)}.build-zone{border:1px dashed var(--line);min-height:58px;padding:10px;display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:10px}.build-chip{border:1px solid var(--line);background:#fffdfa;padding:8px 11px;border-radius:999px}.build-chip.used{opacity:.3;pointer-events:none}.built-token{background:var(--ink);color:white;padding:7px 10px;border-radius:999px}.check-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:13px}.check-answer{border:0;background:var(--ink);color:white;padding:9px 14px;border-radius:999px;font-weight:700}.reset-answer{border:1px solid var(--line);background:transparent;padding:8px 12px;border-radius:999px}.i-feedback{font-size:13px;margin-top:10px;min-height:24px}.i-feedback.ok{color:var(--cool)}.i-feedback.no{color:var(--warm)}.answer-box .official-line{font-weight:800}.answer-reveal-btn{border:0;border-bottom:1px solid var(--ink);background:transparent;padding:8px 0;font-weight:800;margin-top:10px}.answer-reveal-btn:disabled{opacity:.35;cursor:not-allowed}
+@media(max-width:850px){
+ .site-top{position:sticky}.top-in{padding:8px 12px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"brand progress" "nav nav";gap:6px 10px}.brand{grid-area:brand}.progress-pill{grid-area:progress}.nav{grid-area:nav;display:flex;width:100%;padding-top:5px}.nav a{padding:7px 10px}.hero{grid-template-columns:1fr;padding-top:28px}.hero-stage{height:390px;min-height:390px;border-right:0;border-top:1px solid var(--line)}.section{padding:56px 18px 110px}.section-head{grid-template-columns:1fr;margin-bottom:28px}.lab{grid-template-columns:1fr}.lab-side{border-left:0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 120px;gap:15px}.lab-main{padding:26px 18px}.pattern-stage,.delete-box,.parse-wrap{grid-template-columns:1fr}.meaning-stage,.transform-grid{grid-template-columns:1fr}.traps{grid-template-columns:1fr}.sim-options,.interactive-options{grid-template-columns:1fr}.section h2{font-size:40px}.choice-row{grid-template-columns:1fr}.exam-head{display:block}.footer{display:none}.page-switcher{bottom:10px;width:calc(100% - 20px);justify-content:space-between}.lesson-page#bank.active-page .bank-nav{bottom:72px;width:calc(100% - 20px)}.page-switcher span{flex:1}.pair-row{grid-template-columns:1fr 1fr}.pair-row .scenario{grid-column:1/-1}.lesson-page{min-height:calc(100svh - 112px)}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="site-top">
+  <div class="top-in">
+    <div class="brand"><div class="mark">ن</div><div><b>مختبر القرار</b><small>الإغراء والتحذير · الصف الثاني عشر</small></div></div>
+    <nav class="nav" id="lessonNav">
+      <a href="#intro" data-page-link="intro">البداية</a><a href="#discover" data-page-link="discover">اكتشف</a><a href="#patterns" data-page-link="patterns">الصور</a><a href="#deletion" data-page-link="deletion">الحذف</a><a href="#meaning" data-page-link="meaning">المعنى</a><a href="#parse" data-page-link="parse">الإعراب</a><a href="#transform" data-page-link="transform">التحويل</a><a href="#traps" data-page-link="traps">الفخاخ</a><a href="#bank" data-page-link="bank">بنك النهائي</a><a href="#sim" data-page-link="sim">المحاكاة</a><a href="#sources" data-page-link="sources">المصادر</a>
+    </nav>
+    <div class="progress-pill"><i class="dot"></i><span id="progressText">لم تبدأ بعد</span></div>
+  </div>
+</header>
+
+<main>
+<section class="hero lesson-page active-page" id="intro">
+  <div>
+    <div class="eyebrow"><i></i> مدرسة الإمام المهنا بن سلطان · اللغة العربية</div>
+    <h1>اقتربْ<br><span>أم ابتعدْ؟</span></h1>
+    <p class="lead">لن تبدأ بتعريف. ستسمع العبارة، تفهم المقصود، ثم تكشف الفعل المختبئ وراءها. من هنا ستصل بنفسك إلى الإغراء والتحذير وصورهما وحكم حذف الفعل.</p>
+    <div class="author-line">إعداد الموقع التفاعلي: <b>د. ماجد الحسيني</b></div>
+    <div class="hero-actions"><a class="btn primary" href="#discover" data-page-jump="discover">ابدأ التجربة</a><a class="btn" href="#bank" data-page-jump="bank">اذهب إلى بنك النهائي</a></div>
+  </div>
+  <div class="hero-stage" aria-hidden="true">
+    <div class="axis">
+      <div class="pole top">اقترب <em>أمر محمود</em></div>
+      <div class="core"><strong>الصدقَ<br>الصدقَ</strong><small>ما الفعل المختبئ؟</small></div>
+      <div class="pole bottom">ابتعد <em>أمر مكروه</em></div>
+    </div>
+    <span class="floating f1">الزم</span><span class="floating f2">احذر</span><span class="floating f3">جائز الحذف</span><span class="floating f4">واجب الحذف</span>
+  </div>
+</section>
+
+<section class="section lesson-page" id="discover">
+  <div class="section-head"><div><div class="num">01 / الاكتشاف</div><h2>لا تسمِّه بعد.</h2></div><p class="section-intro">اقرأ الموقف، ثم قرر هل يدفعك المتكلم نحو الشيء أم يبعدك عنه. بعد الإجابة سيظهر المصطلح النحوي والفعل المقدر.</p></div>
+  <div class="lab">
+    <aside class="lab-side"><div><strong>مختبر الاتجاه</strong><p>المعنى أولًا، والمصطلح بعده.</p></div><div><div class="lab-meter"><i id="discoverMeter"></i></div><p id="discoverCount">0 / 6</p></div></aside>
+    <div class="lab-main">
+      <div class="context-label" id="discoverContext"></div>
+      <div class="prompt" id="discoverPhrase"></div>
+      <p class="subprompt">ما اتجاه المتكلم هنا؟</p>
+      <div class="choice-row"><button class="choice" data-direction="toward">اقترب منه<small>حثٌّ على أمر محمود</small></button><button class="choice" data-direction="away">ابتعد عنه<small>تنبيه من أمر مكروه</small></button></div>
+      <div class="feedback" id="discoverFeedback"><b id="discoverTitle"></b><p id="discoverText"></p><button class="next" id="discoverNext">الموقف التالي</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="section lesson-page" id="patterns">
+  <div class="section-head"><div><div class="num">02 / الصور</div><h2>غيّر البنية، يتغيّر الحكم.</h2></div><p class="section-intro">انقر الصورة لتشاهد تركيبها، مثالًا عليها، والفعل الذي يقدره النحاة. الهدف أن تتعرف على البنية بصريًا قبل حفظ اسمها.</p></div>
+  <div class="pattern-stage">
+    <div class="pattern-display"><div class="formula" id="patternFormula"></div><div class="sentence" id="patternSentence"></div><div class="rule" id="patternRule"></div></div>
+    <div><div class="strip" style="margin-bottom:14px"><button class="chip active" data-mode="enc">الإغراء</button><button class="chip" data-mode="warn">التحذير</button></div><div class="pattern-list" id="patternList"></div></div>
+  </div>
+</section>
+
+<section class="section lesson-page" id="deletion">
+  <div class="section-head"><div><div class="num">03 / حذف الفعل</div><h2>هل أستطيع إظهار الفعل؟</h2></div><p class="section-intro">في الصورة المفردة يمكن حذف العامل أو ذكره؛ أما التكرار والعطف وصور «إياك…» ونحوها فالحذف واجب. اختر قبل أن ترى القاعدة.</p></div>
+  <div class="lab">
+    <aside class="lab-side"><div><strong>اختبار الحذف</strong><p>جائز أم واجب؟</p></div><div><div class="lab-meter"><i id="deleteMeter"></i></div><p id="deleteCount">0 / 8</p></div></aside>
+    <div class="lab-main">
+      <div class="delete-box"><div><div class="context-label" id="deleteType"></div><div class="delete-word" id="deleteSentence"></div><div class="feedback" id="deleteFeedback"><b id="deleteTitle"></b><p id="deleteExplain"></p><button class="next" id="deleteNext">التالي</button></div></div><div class="binary"><button data-delete="optional">حذف الفعل جائز</button><button data-delete="required">حذف الفعل واجب</button><p class="mini-rule">تذكّر: الحكم يتصل بصورة الأسلوب، لا بجمال الجملة أو طولها.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section lesson-page" id="meaning">
+  <div class="section-head"><div><div class="num">04 / المعنى</div><h2>العبارة نفسها. حكمان مختلفان.</h2></div><p class="section-intro">هذا هو الفخ الأهم: الشكل وحده لا يكفي دائمًا. السياق هو الذي يكشف هل الفعل المقدر «الزم» أم «احذر».</p></div>
+  <div class="meaning-stage">
+    <div class="meaning-pane"><h3>المشهد الأول</h3><div class="same-phrase">المؤازرةَ المؤازرةَ</div><div class="ctx">قال الأب لابنه في <b>نصرة المظلوم</b>: المؤازرةَ المؤازرةَ.</div><button class="btn" onclick="revealVerb('m1')">اكشف الفعل</button><div class="verb-reveal" id="m1"><div class="verb cool">الزم</div><p>المعنى محمود؛ فالعبارة إغراء، والفعل محذوف وجوبًا بسبب التكرار.</p></div></div>
+    <div class="meaning-pane"><h3>المشهد الثاني</h3><div class="same-phrase">المؤازرةَ المؤازرةَ</div><div class="ctx">قال الأب لابنه في <b>مؤازرة صديقه الظالم</b>: المؤازرةَ المؤازرةَ.</div><button class="btn" onclick="revealVerb('m2')">اكشف الفعل</button><div class="verb-reveal" id="m2"><div class="verb warm">احذر</div><p>المعنى مكروه؛ فالعبارة تحذير، والفعل محذوف وجوبًا بسبب التكرار.</p></div></div>
+  </div>
+  <p class="source-note" style="margin-top:10px">هذا النمط منقول في تيسير المفيد ضمن أسئلة اختبار 2018/2019، والإجابتان المذكورتان فيه: «الزم» و«احذر».</p>
+</section>
+
+<section class="section lesson-page" id="parse">
+  <div class="section-head"><div><div class="num">05 / الإعراب</div><h2>اضغط الكلمة، لا تقرأ فقرة.</h2></div><p class="section-intro">الإعراب هنا طبقات. اختر كلمة من الجملة، وسيظهر موقعها والعامل المحذوف والعلامة. ثم انتقل إلى الجملة الأصعب.</p></div>
+  <div class="strip" style="margin-bottom:18px"><button class="chip active parse-set" data-parse="iyak">إياكم والتكاسل</button><button class="chip parse-set" data-parse="tongue">لسانك والكذب</button><button class="chip parse-set" data-parse="repeat">المزاح المزاح</button></div>
+  <div class="parse-wrap"><div class="parse-sentence" id="parseSentence"></div><div class="parse-panel"><div class="context-label">الإعراب المختار</div><div class="big" id="parseWord">اختر كلمة من الجملة</div><p id="parseText">سيظهر هنا الإعراب خطوةً خطوة.</p></div></div>
+</section>
+
+<section class="section lesson-page" id="transform">
+  <div class="section-head"><div><div class="num">06 / التحويل</div><h2>حوّل المعنى إلى أسلوب.</h2></div><p class="section-intro">اكتب إجابتك أولًا. لا توجد مقارنة آلية متصلبة هنا لأن الإنشاء قد يقبل أكثر من صياغة صحيحة؛ بعد ذلك اكشف نموذجًا مناسبًا وقارن عناصره بإجابتك.</p></div>
+  <div class="transform-grid" id="transformGrid"></div>
+</section>
+
+<section class="section lesson-page" id="traps">
+  <div class="section-head"><div><div class="num">07 / فخاخ الاختبار</div><h2>أخطاء صغيرة، درجات كبيرة.</h2></div><p class="section-intro">هذه ليست ملخصًا للدرس؛ إنها النقاط التي تجعل الإجابة تبدو صحيحة وهي ناقصة أو غير دقيقة.</p></div>
+  <div class="traps">
+    <div class="trap"><div class="n">01</div><h3>«مفرد» لا تعني أن الحذف واجب.</h3><p>في الإغراء والتحذير إذا ورد المغرى به أو المحذر منه <strong>مفردًا وحده</strong> فحذف الفعل جائز.</p></div>
+    <div class="trap"><div class="n">02</div><h3>المكرر ليس مفعولين به.</h3><p>الأول مفعول به لفعل محذوف، والثاني <strong>توكيد منصوب</strong>.</p></div>
+    <div class="trap"><div class="n">03</div><h3>في العطف لا تسمِّ الثاني «معطوفًا عليه».</h3><p>في «الكذبَ والنفاقَ» الكذب هو المعطوف عليه، والنفاق <strong>معطوف منصوب</strong>.</p></div>
+    <div class="trap"><div class="n">04</div><h3>«إياك» ليست المحذر منه.</h3><p>هي ضمير منفصل في محل نصب مفعول به لفعل محذوف وجوبًا؛ والمحذر منه يأتي بعدها بحسب الصورة.</p></div>
+    <div class="trap"><div class="n">05</div><h3>لا تحفظ «الزم» لكل جملة.</h3><p>«المؤازرة المؤازرة» قد يكون تقديرها <strong>الزم</strong> أو <strong>احذر</strong> وفق المعنى.</p></div>
+    <div class="trap"><div class="n">06</div><h3>قد تحتاج الجملة عاملين.</h3><p>في «لسانك والكذب» التقدير المنهجي: <strong>صُن لسانك</strong>، و<strong>احذر الكذب</strong>.</p></div>
+  </div>
+</section>
+
+<section class="section lesson-page" id="bank">
+  <div class="section-head"><div><div class="num">08 / بنك النهائي</div><h2>السؤال كما جاء، والمصدر ظاهر.</h2></div><p class="section-intro">سؤال واحد في كل مرة، لكن طريقة الإجابة تتغير: اختيار، تحديد من النص، اختيار متعدد، بناء تركيب، أو ربط السياق بالفعل المناسب. وبعد المحاولة فقط يمكنك كشف الإجابة المرجعية ومصدرها.</p></div>
+  <div class="bank-tools"><div class="filters"><button class="chip active bank-filter" data-filter="all">الكل</button><button class="chip bank-filter" data-filter="verified">ورقة أصلية متاحة</button><button class="chip bank-filter" data-filter="archive">أرشيف تيسير المفيد</button></div><span class="source-note" id="bankCount"></span></div>
+  <div class="bank-stage"><div class="bank-list" id="bankList"></div><div class="bank-nav"><button id="bankPrev">السابق</button><span class="source-note" id="bankPosition"></span><button id="bankNext">التالي</button></div></div>
+</section>
+
+<section class="section lesson-page" id="sim">
+  <div class="section-head"><div><div class="num">09 / المحاكاة</div><h2>اختبار يتغير كل مرة.</h2></div><p class="section-intro">ثمانية أسئلة قصيرة تغطي التعرف على الأسلوب، الصورة، حذف الفعل، تقدير العامل، والإعراب. الترتيب عشوائي في كل محاولة.</p></div>
+  <div class="sim-shell">
+    <div class="sim-top"><b>محاكاة الإغراء والتحذير</b><span class="sim-score" id="simMeta">السؤال 1 من 8</span></div>
+    <div id="simArea"></div>
+  </div>
+</section>
+
+<section class="section lesson-page" id="sources">
+  <div class="section-head"><div><div class="num">المصادر</div><h2>كيف بُني المحتوى؟</h2></div><div class="sources"><p><b>كتاب المفيد للصف الثاني عشر</b>: الصفحات 23–32 من النسخة المتاحة، وهو المرجع المنهجي لصور الأسلوب وتركيبه وتدريباته.</p><p><b>دفتر تيسير المفيد – الفصل الأول 2022</b>: الصفحات 8–12، ومنها تفصيل الإعراب وتجميع أسئلة اختبارات 2011/2012 حتى 2018/2019.</p><p><b>مشروع ثراء 2023 – ملف الاختبارات النهائية</b>: استُخدمت منه صفحات الاختبارات الفعلية 2014/2015، 2017/2018، 2019/2020، ونموذج إجابة 2022/2023 عند توافر النص المقروء.</p><p>عند عدم توافر نموذج الإجابة الرسمي المباشر، لا تُسمى الإجابة في هذا الموقع «رسمية»، حتى لو وافقت القاعدة.</p></div></div>
+</section>
+</main>
+<div class="page-switcher" aria-label="التنقل بين المحاور"><button id="pagePrev">السابق</button><span id="pagePosition">1 / 11</span><button id="pageNext">التالي</button></div>
+
+<footer class="footer"><div>مختبر القرار · الإغراء والتحذير</div><span>إعداد الموقع التفاعلي: د. ماجد الحسيني</span></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const state={discover:0,delete:0,done:new Set(JSON.parse(localStorage.getItem('ighraaDone')||'[]'))};
+function markDone(k){state.done.add(k);localStorage.setItem('ighraaDone',JSON.stringify([...state.done]));updateProgress()}
+function updateProgress(){const n=state.done.size;document.getElementById('progressText').textContent=n?`أنجزت ${n} محاور`:'لم تبدأ بعد'}
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1700)}
+
+
+const pageIds=['intro','discover','patterns','deletion','meaning','parse','transform','traps','bank','sim','sources'];
+let pageIndex=0;
+function goPage(target,pushHash=true){
+  const idx=typeof target==='number'?Math.max(0,Math.min(pageIds.length-1,target)):pageIds.indexOf(target);
+  if(idx<0)return;
+  pageIndex=idx;
+  document.querySelectorAll('.lesson-page').forEach(p=>p.classList.toggle('active-page',p.id===pageIds[idx]));
+  document.querySelectorAll('[data-page-link]').forEach(a=>a.classList.toggle('active',a.dataset.pageLink===pageIds[idx]));
+  document.getElementById('pagePrev').disabled=idx===0;
+  document.getElementById('pageNext').disabled=idx===pageIds.length-1;
+  document.getElementById('pagePrev').textContent=idx===0?'السابق':`السابق · ${pageLabel(pageIds[idx-1])}`;
+  document.getElementById('pageNext').textContent=idx===pageIds.length-1?'اكتمل':`${pageLabel(pageIds[idx+1])} · التالي`;
+  document.getElementById('pagePosition').textContent=`${idx+1} / ${pageIds.length}`;
+  if(pushHash)history.replaceState(null,'','#'+pageIds[idx]);
+  window.scrollTo({top:0,behavior:'smooth'});
+  const active=document.querySelector(`[data-page-link="${pageIds[idx]}"]`);if(active)active.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+}
+function pageLabel(id){return({intro:'البداية',discover:'الاكتشاف',patterns:'الصور',deletion:'الحذف',meaning:'المعنى',parse:'الإعراب',transform:'التحويل',traps:'الفخاخ',bank:'بنك النهائي',sim:'المحاكاة',sources:'المصادر'})[id]||id}
+document.getElementById('pagePrev').onclick=()=>goPage(pageIndex-1);
+document.getElementById('pageNext').onclick=()=>goPage(pageIndex+1);
+document.querySelectorAll('[data-page-link],[data-page-jump]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goPage(a.dataset.pageLink||a.dataset.pageJump)}));
+window.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;if(e.key==='ArrowLeft')goPage(pageIndex+1);if(e.key==='ArrowRight')goPage(pageIndex-1)});
+
+const discoveries=[
+ {ctx:'زميلك يتردد في قول الحقيقة رغم أن الصدق سينجيه.',phrase:'الصدقَ الصدقَ',dir:'toward',name:'إغراء',verb:'الزم',why:'يدعوه إلى أمر محمود ليلزمه.'},
+ {ctx:'صديقك يوشك أن ينشر خبرًا لم يتحقق منه.',phrase:'الإشاعةَ الإشاعةَ',dir:'away',name:'تحذير',verb:'احذر',why:'ينبهه إلى أمر مكروه ليتجنبه.'},
+ {ctx:'طالب بدأ يفقد حماسه قبل الاختبار.',phrase:'الصبرَ والمثابرةَ',dir:'toward',name:'إغراء',verb:'الزم',why:'حث على أمرين محمودين معطوف أحدهما على الآخر.'},
+ {ctx:'شخص يستهين بالكبرياء على الناس.',phrase:'إياكَ والكِبرَ',dir:'away',name:'تحذير',verb:'احذر',why:'صورة من التحذير تبدأ بإياك ثم الواو والمحذر منه.'},
+ {ctx:'ترى طالبًا يفرط في إهمال واجباته.',phrase:'إياكَ من الإهمالِ',dir:'away',name:'تحذير',verb:'احذر',why:'إياك + من + المحذر منه.'},
+ {ctx:'تريد أن تحث زميلك على الأمانة في عمله.',phrase:'الأمانةَ',dir:'toward',name:'إغراء',verb:'الزم',why:'المغرى به مفرد؛ وهنا يجوز حذف الفعل.'}
+];
+let dAnswered=false;
+function renderDiscover(){const x=discoveries[state.discover%discoveries.length];dAnswered=false;document.getElementById('discoverContext').textContent=x.ctx;document.getElementById('discoverPhrase').textContent=x.phrase;document.getElementById('discoverFeedback').classList.remove('show');document.querySelectorAll('[data-direction]').forEach(b=>b.classList.remove('good','bad'));document.getElementById('discoverCount').textContent=`${Math.min(state.discover,6)} / 6`;document.getElementById('discoverMeter').style.width=`${Math.min(state.discover,6)/6*100}%`}
+document.querySelectorAll('[data-direction]').forEach(btn=>btn.addEventListener('click',()=>{if(dAnswered)return;dAnswered=true;const x=discoveries[state.discover%discoveries.length],ok=btn.dataset.direction===x.dir;btn.classList.add(ok?'good':'bad');document.getElementById('discoverTitle').textContent=ok?`صحيح: ${x.name}`:`ليست كذلك؛ هذا ${x.name}`;document.getElementById('discoverText').textContent=`الفعل المقدر الأنسب هنا: «${x.verb}». ${x.why}`;document.getElementById('discoverFeedback').classList.add('show')}));
+document.getElementById('discoverNext').onclick=()=>{state.discover++;if(state.discover>=6){markDone('الاكتشاف');state.discover=0;toast('اكتمل مختبر الاتجاه')}renderDiscover()};
+
+const patterns={
+ enc:[
+  {name:'المفرد',formula:'مغرى به واحد',sentence:'الأمانةَ',rule:'مفعول به لفعل محذوف جوازًا، نحو: الزم الأمانة.'},
+  {name:'المكرر',formula:'المغرى به + نفسه',sentence:'الأمانةَ الأمانةَ',rule:'الفعل محذوف وجوبًا، والثاني توكيد منصوب.'},
+  {name:'المعطوف',formula:'مغرى به + و + مغرى به آخر',sentence:'الأمانةَ والصدقَ',rule:'الفعل محذوف وجوبًا، والثاني معطوف منصوب.'}
+ ],
+ warn:[
+  {name:'المفرد',formula:'محذر منه واحد',sentence:'الإهمالَ',rule:'مفعول به لفعل محذوف جوازًا تقديره: احذر.'},
+  {name:'المكرر',formula:'المحذر منه + نفسه',sentence:'الإهمالَ الإهمالَ',rule:'الفعل محذوف وجوبًا، والثاني توكيد منصوب.'},
+  {name:'المعطوف',formula:'محذر منه + و + محذر منه',sentence:'الكذبَ والنفاقَ',rule:'الفعل محذوف وجوبًا، والثاني معطوف منصوب.'},
+  {name:'المحذر له + الواو',formula:'اسم يخشى عليه + و + المحذر منه',sentence:'يدكَ والنارَ',rule:'الحذف واجب. في هذا النوع يدل الاسم الأول على من/ما نخشى عليه.'},
+  {name:'إياك + الواو',formula:'إياك + و + المحذر منه',sentence:'إياكَ والكبرَ',rule:'الحذف واجب. إياك مفعول به لفعل محذوف وجوبًا.'},
+  {name:'إياك + من',formula:'إياك + من + المحذر منه',sentence:'إياكَ من الإهمالِ',rule:'الحذف واجب، والمحذر منه مجرور بمن.'},
+  {name:'إياك + أن',formula:'إياك + أن + جملة فعلية',sentence:'إياكَ أن تُهمِلَ',rule:'الحذف واجب، وتأتي بعد أن جملة فعلية.'}
+ ]
+};
+let pMode='enc';
+function renderPatterns(){const list=document.getElementById('patternList');list.innerHTML='';patterns[pMode].forEach((p,i)=>{const b=document.createElement('button');b.className='pattern-btn'+(i===0?' active':'');b.innerHTML=`<b>${p.name}</b><span>${p.formula}</span>`;b.onclick=()=>{[...list.children].forEach(x=>x.classList.remove('active'));b.classList.add('active');showPattern(p)};list.appendChild(b)});showPattern(patterns[pMode][0])}
+function showPattern(p){document.getElementById('patternFormula').textContent=p.formula;document.getElementById('patternSentence').textContent=p.sentence;document.getElementById('patternRule').textContent=p.rule}
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-mode]').forEach(x=>x.classList.remove('active'));b.classList.add('active');pMode=b.dataset.mode;renderPatterns()});
+
+const deleteQs=[
+ {type:'إغراء · مفرد',s:'الصدقَ',a:'optional',e:'المغرى به مفرد؛ يجوز ذكر الفعل «الزم» أو حذفه.'},
+ {type:'إغراء · مكرر',s:'الصدقَ الصدقَ',a:'required',e:'مع التكرار يجب حذف الفعل.'},
+ {type:'إغراء · معطوف',s:'الصدقَ والأمانةَ',a:'required',e:'مع العطف يجب حذف الفعل.'},
+ {type:'تحذير · مفرد',s:'الكذبَ',a:'optional',e:'المحذر منه مفرد؛ حذف «احذر» جائز.'},
+ {type:'تحذير · مكرر',s:'الكذبَ الكذبَ',a:'required',e:'التكرار يوجب حذف الفعل.'},
+ {type:'تحذير · إياك + الواو',s:'إياكَ والكذبَ',a:'required',e:'صور إياك من مواضع الحذف الواجب.'},
+ {type:'تحذير · المحذر له + الواو',s:'لسانكَ والكذبَ',a:'required',e:'الحذف واجب، وقد يقدّر للأول «صُن» وللثاني «احذر».'},
+ {type:'تحذير · إياك + أن',s:'إياكَ أن تكذبَ',a:'required',e:'الحذف واجب في هذه الصورة.'}
+];
+let delAnswered=false;
+function renderDelete(){const x=deleteQs[state.delete%deleteQs.length];delAnswered=false;document.getElementById('deleteType').textContent=x.type;document.getElementById('deleteSentence').innerHTML=x.a==='optional'?`<span class="ghost">[الزم/احذر]</span>${x.s}`:x.s;document.getElementById('deleteFeedback').classList.remove('show');document.getElementById('deleteCount').textContent=`${Math.min(state.delete,8)} / 8`;document.getElementById('deleteMeter').style.width=`${Math.min(state.delete,8)/8*100}%`}
+document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(delAnswered)return;delAnswered=true;const x=deleteQs[state.delete%deleteQs.length],ok=b.dataset.delete===x.a;document.getElementById('deleteTitle').textContent=ok?'إجابة صحيحة':`الصواب: ${x.a==='optional'?'جائز':'واجب'}`;document.getElementById('deleteExplain').textContent=x.e;document.getElementById('deleteFeedback').classList.add('show')});
+document.getElementById('deleteNext').onclick=()=>{state.delete++;if(state.delete>=8){markDone('الحذف');state.delete=0;toast('أتقنت قاعدة الحذف')}renderDelete()};
+
+function revealVerb(id){document.getElementById(id).classList.add('show');markDone('المعنى')}
+
+const parses={
+ iyak:{tokens:[['إياكم','ضمير منفصل مبني في محل نصب مفعول به لفعل محذوف وجوبًا تقديره: أحذّر.'],['الواو','حرف عطف.'],['التكاسلَ','مفعول به منصوب لفعل محذوف وجوبًا تقديره: احذر، وعلامة نصبه الفتحة.']]},
+ tongue:{tokens:[['لسانكَ','مفعول به منصوب لفعل محذوف وجوبًا، والتقدير المناسب للمعنى: صُنْ لسانك. والكاف مضاف إليه.'],['الواو','حرف عطف في تركيب التحذير.'],['الكذبَ','مفعول به منصوب لفعل محذوف وجوبًا تقديره: احذر.']]},
+ repeat:{tokens:[['المزاحَ','مفعول به منصوب لفعل محذوف وجوبًا تقديره: احذر.'],['المزاحَ','توكيد لفظي منصوب، وعلامة نصبه الفتحة.']]}
+};
+let parseKey='iyak';
+function renderParse(){const box=document.getElementById('parseSentence');box.innerHTML='';parses[parseKey].tokens.forEach(([w,e])=>{const b=document.createElement('button');b.className='token';b.textContent=w;b.onclick=()=>{box.querySelectorAll('.token').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('parseWord').textContent=w;document.getElementById('parseText').textContent=e;markDone('الإعراب')};box.appendChild(b)});document.getElementById('parseWord').textContent='اختر كلمة من الجملة';document.getElementById('parseText').textContent='سيظهر هنا الإعراب خطوةً خطوة.'}
+document.querySelectorAll('.parse-set').forEach(b=>b.onclick=()=>{document.querySelectorAll('.parse-set').forEach(x=>x.classList.remove('active'));b.classList.add('active');parseKey=b.dataset.parse;renderParse()});
+
+const transformTasks=[
+ {tag:'تدريب من إعداد الموقع',q:'حثّ زميلك على الوفاء مستخدمًا صورة يكون فيها حذف الفعل جائزًا.',a:'الوفاءَ؛ فإنه من شيم الكرام. — المغرى به مفرد، وحذف «الزم» جائز.'},
+ {tag:'تدريب من إعداد الموقع',q:'حذّر زميلك من الغش مستخدمًا صورة المحذر منه المكرر.',a:'الغشَّ الغشَّ؛ فإنه يهدم الثقة. — الفعل «احذر» محذوف وجوبًا.'},
+ {tag:'نمط امتحاني موثق في تيسير المفيد',q:'حذّر صاحبك من أشعة الشمس مستخدمًا: المحذر له + الواو + المحذر منه.',a:'رأسَك وأشعةَ الشمس.'},
+ {tag:'تدريب من إعداد الموقع',q:'حوّل: «أحثك على الصدق والأمانة» إلى أسلوب إغراء معطوف.',a:'الصدقَ والأمانةَ؛ فهما أساس الثقة.'},
+ {tag:'تدريب من إعداد الموقع',q:'حوّل: «أحذرك من أن تتهاون في وقتك» إلى صورة تبدأ بـ«إياك».',a:'إياكَ أن تتهاونَ في وقتك.'},
+ {tag:'تدريب معنى',q:'اكتب تقدير الفعل في: «العلمَ العلمَ» إذا كان المتكلم يحثك على طلبه.',a:'التقدير: الزم العلمَ. والحذف واجب بسبب التكرار.'}
+];
+function renderTransforms(){const g=document.getElementById('transformGrid');g.innerHTML='';transformTasks.forEach((t,i)=>{const d=document.createElement('div');d.className='task';d.innerHTML=`<div class="tag">${t.tag}</div><h3>${t.q}</h3><textarea placeholder="اكتب إجابتك هنا أولًا..."></textarea><button class="reveal" data-model="tm${i}">اكشف نموذجًا مناسبًا</button><div class="model" id="tm${i}">${t.a}</div>`;g.appendChild(d)});g.querySelectorAll('[data-model]').forEach(b=>b.onclick=()=>{document.getElementById(b.dataset.model).classList.toggle('show');markDone('التحويل')})}
+
+const bank=[
+ {kind:'verified',year:'2014/2015',q:'س17 (د)',title:'استخرج من الفقرة أسلوب إغراء، وبيّن صورته.',stem:'«... فيا شباب الإسلام القدوةَ القدوةَ بهذا الفتى المقدام. فأنتم أحفاد صحابة رسول الله ... وإياكم والتخاذل...»',answer:'القدوةَ القدوةَ — المغرى به مكرر.',answerType:'guide',answerLabel:'الإجابة واردة في تيسير المفيد، ولم تُصنَّف هنا كنموذج رسمي مباشر.',interaction:{type:'phrase',prompt:'حدد أسلوب الإغراء أولًا، ثم حدّد صورته.',options:['فيا شباب الإسلام','القدوةَ القدوةَ','فأنتم أحفاد الصحابة','إياكم والتخاذل'],correct:1,follow:{prompt:'ما صورته؟',options:['مفرد','مكرر','معطوف','إياك + الواو'],correct:1}}},
+ {kind:'verified',year:'2014/2015',q:'س21',title:'يرد أسلوب التحذير على صور عدة. اذكر صورتين منها.',stem:'السؤال مستقل ولا يحتاج فقرة مرافقة.',answer:'يُقبل ذكر صورتين صحيحتين من صور التحذير المقررة في المنهج.',answerType:'guide',answerLabel:'السؤال من ورقة الاختبار؛ الجواب المعروض تلخيص منهجي لا نموذج إجابة رسمي مباشر.',interaction:{type:'multi',prompt:'اختر صورتين صحيحتين للتحذير.',required:2,valid:[0,1,2,3],options:['المحذر منه وحده','المحذر منه مكررًا','إياك + من + المحذر منه','إياك + أن + جملة فعلية','المغرى به المكرر','النداء + المنادى']}},
+ {kind:'verified',year:'2017/2018',q:'س18 (ج)',title:'استخرج من الفقرة أسلوب إغراء، وبيّن صورته.',stem:'«... حتى إذا ما طلع الفجر وأديت فرضك صحت: العملَ العملَ، فهو الحركة المتدفقة ... وها أنا أقول لكم: إياكم والتكاسل...»',answer:'العملَ العملَ — المغرى به مكرر.',answerType:'guide',answerLabel:'الإجابة مطابقة لما أورده تيسير المفيد عن الاختبار، وليست موسومة هنا كنموذج رسمي مباشر.',interaction:{type:'phrase',prompt:'اضغط العبارة التي تمثل الإغراء، ثم حدد الصورة.',options:['ما أحسن حالك','العملَ العملَ','إياكم والتكاسل','حبذا باب الأمل'],correct:1,follow:{prompt:'الصورة:',options:['مفرد','مكرر','معطوف','محذر له + واو'],correct:1}}},
+ {kind:'verified',year:'2017/2018',q:'س21',title:'كوّن جملتي إغراء لصفة «التواضع»؛ في الأولى حذف الفعل جوازًا، وفي الثانية وجوبًا.',stem:'أ) جملة حذف منها الفعل جوازًا. ب) جملة حذف منها الفعل وجوبًا.',answer:'أ) التواضعَ؛ فإنه خلق كريم.  ب) التواضعَ التواضعَ؛ فإنه من حسن الخلق.',answerType:'guide',answerLabel:'هذه الصياغة واردة في تيسير المفيد ضمن إجابات السؤال.',interaction:{type:'dual',prompt:'اختر الصياغة المناسبة لكل حالة.',rows:[{label:'الحذف جائز',options:['التواضعَ؛ فإنه خلق كريم.','التواضعَ التواضعَ؛ فإنه خلق كريم.','إياكَ والتواضعَ.'],correct:0},{label:'الحذف واجب',options:['الزم التواضعَ.','التواضعَ التواضعَ؛ فإنه من حسن الخلق.','التواضعُ خلق كريم.'],correct:1}]}},
+ {kind:'verified',year:'2019/2020',q:'س20 (ب)',title:'استخرج من النص أسلوب إغراء، وقدّر الفعل المحذوف.',stem:'«... وأنتم شباب عمان عليكم مسؤولية كبرى فصونوا منجزاتكم ... أبناء عمان التآلفَ والتآزرَ، فالوطن يستحق منا التمسك به...»',answer:'التحليل المنهجي: «التآلفَ والتآزرَ» أسلوب إغراء معطوف، والتقدير المناسب للسياق: الزموا التآلفَ والتآزرَ.',answerType:'analysis',answerLabel:'لم يتوافر في النص المقروء نموذج الإجابة الرسمي لهذا السؤال؛ لذلك لا تُعد هذه الإجابة رسمية.',interaction:{type:'phrase',prompt:'حدد أسلوب الإغراء، ثم اختر الفعل المقدر الأنسب.',options:['شباب عمان','صونوا منجزاتكم','التآلفَ والتآزرَ','إياكم والانجراف'],correct:2,follow:{prompt:'الفعل المقدر:',options:['احذروا','الزموا','اتركوا','ابتعدوا عن'],correct:1}}},
+ {kind:'verified',year:'2019/2020',q:'س22',title:'«إياك أن تطمع فيما ليس لك». بيّن صورة أسلوب التحذير.',stem:'إياك أن تطمع فيما ليس لك.',answer:'إياك + أن + المحذر منه في صورة جملة فعلية.',answerType:'analysis',answerLabel:'تحليل مطابق للقاعدة المنهجية؛ لم يُوسم كنموذج رسمي مباشر.',interaction:{type:'choice',prompt:'اختر البناء المطابق للجملة.',options:['إياك + الواو + المحذر منه','إياك + من + المحذر منه','إياك + أن + جملة فعلية','المحذر له + الواو + المحذر منه'],correct:2}},
+ {kind:'verified',year:'2019/2020',q:'س26',title:'يأتي أسلوب الإغراء على ثلاث صور منها المغرى به وحده. اذكر الصورتين الأخريين.',stem:'المغرى به وحده + ؟ + ؟',answer:'المغرى به مكررًا، والمغرى به معطوفًا على مغرى به آخر.',answerType:'analysis',answerLabel:'الإجابة مستندة إلى كتاب المفيد وقاعدة الدرس، وليست موسومة كنموذج رسمي مباشر.',interaction:{type:'multi',prompt:'اختر الصورتين الأخريين فقط.',required:2,valid:[0,2],options:['المغرى به مكررًا','إياك + من','المغرى به معطوفًا','المحذر منه مفردًا','المحذر له + الواو']}},
+ {kind:'archive',year:'2011/2012',q:'من تجميع تيسير المفيد',title:'استخرج من فقرة أسلوب إغراء وبيّن صورته.',stem:'بحسب التجميع: الإجابة المرتبطة بالسؤال «الجد والاجتهاد».',answer:'ورد في تيسير المفيد: «الجد والاجتهاد» — أمر محمود معطوف على أمر محمود آخر.',answerType:'archive',answerLabel:'أرشيف منقول في تيسير المفيد؛ ورقة الاختبار الأصلية ونموذجها غير متاحين هنا.',interaction:{type:'choice',prompt:'ما الصورة التي يمثلها «الجدَّ والاجتهادَ»؟',options:['مغرى به مفرد','مغرى به مكرر','مغرى به معطوف','محذر منه معطوف'],correct:2}},
+ {kind:'archive',year:'2011/2012',q:'من تجميع تيسير المفيد',title:'حدّد جملة التحذير وبيّن المحذر منه في البيت.',stem:'«وإياك والعوراء لا تنطق بها / فلا خير في اللفظ الكريه استماعه»',answer:'ورد في تيسير المفيد: «إياك والعوراء لا تنطق بها»؛ المحذر منه: العوراء.',answerType:'archive',answerLabel:'أرشيف منقول في تيسير المفيد.',interaction:{type:'phrase',prompt:'حدد المحذر منه.',options:['إياك','العوراء','اللفظ','استماعه'],correct:1}},
+ {kind:'archive',year:'2012/2013',q:'من تجميع تيسير المفيد',title:'استخرج أسلوب إغراء وبيّن حكم حذف الفعل.',stem:'في التجميع ظهرت الصياغة مطبوعة «حكم حذف الفاعل»، وهو موضع مشتبه فيه. الإجابة المرتبطة: «الصفاء والنقاء».',answer:'ورد في تيسير المفيد: «الصفاء والنقاء» — الحذف واجب.',answerType:'archive',answerLabel:'تنبيه: توجد شبهة خطأ طباعي «الفاعل/الفعل» في الدفتر؛ لم نعتمد الصياغة المصححة بوصفها نصًا رسميًا.',interaction:{type:'choice',prompt:'ما حكم حذف الفعل في «الصفاءَ والنقاءَ»؟',options:['جائز','واجب','ممتنع','لا يوجد حذف'],correct:1}},
+ {kind:'archive',year:'2013/2014',q:'من تجميع تيسير المفيد',title:'استخرج أسلوب تحذير ووضح الصورة التي ورد عليها.',stem:'الإجابة المرتبطة في التجميع: «إياك أن تخالف ما به أمرت».',answer:'إياك + أن + المحذر منه في صورة جملة فعلية.',answerType:'archive',answerLabel:'أرشيف منقول في تيسير المفيد.',interaction:{type:'choice',prompt:'اختر صورة التحذير.',options:['إياك + الواو + المحذر منه','إياك + أن + جملة فعلية','إياك + من + المحذر منه','المحذر منه مكررًا'],correct:1}},
+ {kind:'archive',year:'2015/2016',q:'من تجميع تيسير المفيد',title:'صغ أسلوب إغراء تحث به صاحبك على الصدق.',stem:'صياغة إنشائية.',answer:'ورد في تيسير المفيد: «الصدقَ الصدقَ فإنه منجاة».',answerType:'archive',answerLabel:'أرشيف منقول في تيسير المفيد.',interaction:{type:'choice',prompt:'أي صياغة تحقق الإغراء بوضوح؟',options:['الصدقُ منجاة.','إياكَ والصدقَ.','الصدقَ الصدقَ فإنه منجاة.','لا تكذبْ.'],correct:2}},
+ {kind:'archive',year:'2016/2017',q:'من تجميع تيسير المفيد',title:'صغ أسلوب تحذير من أشعة الشمس بصورة: المحذر له + الواو + المحذر منه.',stem:'المحذر له (اسم يخشى عليه) + الواو + المحذر منه.',answer:'ورد في تيسير المفيد: «رأسَك وأشعةَ الشمس».',answerType:'archive',answerLabel:'أرشيف منقول في تيسير المفيد.',interaction:{type:'build',prompt:'ابنِ التركيب المطلوب بالضغط على الأجزاء بالترتيب.',chips:['رأسَك','و','أشعةَ الشمس','إياكَ','من'],expected:[0,1,2]}},
+ {kind:'archive',year:'2018/2019',q:'من تجميع تيسير المفيد',title:'قدّر الفعل المحذوف في عبارتين متماثلتين يختلف معناهما.',stem:'أ) «المؤازرةَ المؤازرةَ» في نصرة المظلوم. ب) «المؤازرةَ المؤازرةَ» في نصرة صديق ظالم.',answer:'أ) الزم. ب) احذر.',answerType:'archive',answerLabel:'أرشيف منقول في تيسير المفيد، وهو من أهم أنماط فهم المعنى.',interaction:{type:'pair',prompt:'اربط كل سياق بالفعل المقدر المناسب.',options:['الزم','احذر'],rows:[{label:'نصرة المظلوم',correct:0},{label:'مؤازرة الصديق الظالم',correct:1}]}}
+];
+let bankFilter='all',bankIndex=0;
+function currentBank(){return bank.filter(x=>bankFilter==='all'||x.kind===bankFilter)}
+function badgeHTML(x){const sourceBadge=x.kind==='verified'?'<span class="badge official">ورقة اختبار أصلية متاحة</span>':'<span class="badge guide">أرشيف تيسير المفيد</span>';const ansBadge=x.answerType==='model'?'<span class="badge model-ok">نموذج رسمي</span>':x.answerType==='analysis'?'<span class="badge guide">تحليل منهجي</span>':'<span class="badge guide">غير موسوم كنموذج رسمي</span>';return `${sourceBadge}<span class="badge">${x.year}</span><span class="badge">${x.q}</span>${ansBadge}`}
+function interactionHTML(it){
+ if(it.type==='choice'||it.type==='phrase')return `<div class="interaction-prompt">${it.prompt}</div><div class="${it.type==='phrase'?'phrase-pick':'interactive-options'}">${it.options.map((o,i)=>`<button class="${it.type==='phrase'?'phrase-token':'i-option'}" data-main-opt="${i}">${o}</button>`).join('')}</div>${it.follow?`<div class="follow-box"><div class="interaction-prompt">${it.follow.prompt}</div><div class="interactive-options">${it.follow.options.map((o,i)=>`<button class="i-option" data-follow-opt="${i}">${o}</button>`).join('')}</div></div>`:''}`;
+ if(it.type==='multi')return `<div class="interaction-prompt">${it.prompt} <b>(${it.required})</b></div><div class="interactive-options">${it.options.map((o,i)=>`<button class="i-option" data-multi-opt="${i}">${o}</button>`).join('')}</div>`;
+ if(it.type==='dual')return `<div class="interaction-prompt">${it.prompt}</div><div class="pair-grid">${it.rows.map((r,ri)=>`<div class="pair-row"><div class="scenario">${r.label}</div>${r.options.map((o,oi)=>`<button data-row="${ri}" data-row-opt="${oi}">${o}</button>`).join('')}</div>`).join('')}</div>`;
+ if(it.type==='pair')return `<div class="interaction-prompt">${it.prompt}</div><div class="pair-grid">${it.rows.map((r,ri)=>`<div class="pair-row"><div class="scenario">${r.label}</div>${it.options.map((o,oi)=>`<button data-row="${ri}" data-row-opt="${oi}">${o}</button>`).join('')}</div>`).join('')}</div>`;
+ if(it.type==='build')return `<div class="interaction-prompt">${it.prompt}</div><div class="build-zone" id="buildZone"><span class="source-note">سيظهر تركيبك هنا</span></div><div class="strip">${it.chips.map((o,i)=>`<button class="build-chip" data-build="${i}">${o}</button>`).join('')}</div>`;
+ return '';
+}
+function renderBank(){
+ const arr=currentBank();if(bankIndex>=arr.length)bankIndex=Math.max(0,arr.length-1);const x=arr[bankIndex];const list=document.getElementById('bankList');
+ document.getElementById('bankCount').textContent=`${arr.length} سؤالًا/نمطًا`;
+ document.getElementById('bankPosition').textContent=arr.length?`السؤال ${bankIndex+1} من ${arr.length}`:'لا توجد أسئلة';
+ document.getElementById('bankPrev').disabled=bankIndex===0;document.getElementById('bankNext').disabled=bankIndex>=arr.length-1;
+ if(!x){list.innerHTML='';return}
+ list.innerHTML=`<article class="exam"><div class="exam-head"><div class="exam-meta">${badgeHTML(x)}</div></div><h3>${x.title}</h3><div class="stem">${x.stem}</div><div class="exam-interaction" id="examInteraction">${interactionHTML(x.interaction)}<div class="check-row"><button class="check-answer" id="checkBank">تحقق من إجابتي</button>${x.interaction.type==='build'?'<button class="reset-answer" id="resetBuild">إعادة البناء</button>':''}</div><div class="i-feedback" id="bankFeedback"></div><button class="answer-reveal-btn" id="revealBank" disabled>اكشف الإجابة المرجعية</button><div class="answer-box" id="bankAnswer"><div class="official-line">${x.answer}</div><div class="warning">${x.answerLabel}</div></div></div></article>`;
+ setupBankInteraction(x);
+}
+function setupBankInteraction(x){
+ const it=x.interaction,root=document.getElementById('examInteraction');let built=[];
+ root.querySelectorAll('[data-main-opt]').forEach(b=>b.onclick=()=>{root.querySelectorAll('[data-main-opt]').forEach(z=>z.classList.remove('selected'));b.classList.add('selected')});
+ root.querySelectorAll('[data-follow-opt]').forEach(b=>b.onclick=()=>{root.querySelectorAll('[data-follow-opt]').forEach(z=>z.classList.remove('selected'));b.classList.add('selected')});
+ root.querySelectorAll('[data-multi-opt]').forEach(b=>b.onclick=()=>{if(!b.classList.contains('selected')&&root.querySelectorAll('[data-multi-opt].selected').length>=it.required){toast(`اختر ${it.required} فقط`);return}b.classList.toggle('selected')});
+ root.querySelectorAll('[data-row-opt]').forEach(b=>b.onclick=()=>{const r=b.dataset.row;root.querySelectorAll(`[data-row="${r}"]`).forEach(z=>z.classList.remove('selected'));b.classList.add('selected')});
+ function drawBuild(){const z=document.getElementById('buildZone');if(!z)return;z.innerHTML=built.length?built.map(i=>`<span class="built-token">${it.chips[i]}</span>`).join(''):'<span class="source-note">سيظهر تركيبك هنا</span>';root.querySelectorAll('[data-build]').forEach(b=>b.classList.toggle('used',built.includes(+b.dataset.build)))}
+ root.querySelectorAll('[data-build]').forEach(b=>b.onclick=()=>{built.push(+b.dataset.build);drawBuild()});
+ const reset=document.getElementById('resetBuild');if(reset)reset.onclick=()=>{built=[];drawBuild()};
+ document.getElementById('checkBank').onclick=()=>{
+   let ok=false,answered=true;
+   if(it.type==='choice'||it.type==='phrase'){
+     const a=root.querySelector('[data-main-opt].selected');if(!a)answered=false;else{ok=+a.dataset.mainOpt===it.correct;if(it.follow){const f=root.querySelector('[data-follow-opt].selected');if(!f)answered=false;else ok=ok&&+f.dataset.followOpt===it.follow.correct}}
+     if(answered){root.querySelectorAll('[data-main-opt]').forEach(b=>{if(+b.dataset.mainOpt===it.correct)b.classList.add('correct');else if(b.classList.contains('selected'))b.classList.add('wrong')});if(it.follow)root.querySelectorAll('[data-follow-opt]').forEach(b=>{if(+b.dataset.followOpt===it.follow.correct)b.classList.add('correct');else if(b.classList.contains('selected'))b.classList.add('wrong')})}
+   } else if(it.type==='multi'){
+     const sel=[...root.querySelectorAll('[data-multi-opt].selected')].map(b=>+b.dataset.multiOpt);answered=sel.length===it.required;ok=answered&&sel.every(i=>it.valid.includes(i));if(answered)root.querySelectorAll('[data-multi-opt]').forEach(b=>{const i=+b.dataset.multiOpt;if(b.classList.contains('selected'))b.classList.add(it.valid.includes(i)?'correct':'wrong')});
+   } else if(it.type==='dual'||it.type==='pair'){
+     const picks=it.rows.map((r,ri)=>root.querySelector(`[data-row="${ri}"].selected`));answered=picks.every(Boolean);ok=answered&&picks.every((b,ri)=>+b.dataset.rowOpt===it.rows[ri].correct);if(answered)picks.forEach((b,ri)=>b.classList.add(+b.dataset.rowOpt===it.rows[ri].correct?'correct':'wrong'));
+   } else if(it.type==='build') {answered=built.length>0;ok=answered&&JSON.stringify(built)===JSON.stringify(it.expected)}
+   const fb=document.getElementById('bankFeedback');if(!answered){fb.textContent='أكمل الاختيار أولًا.';fb.className='i-feedback no';return}fb.textContent=ok?'إجابة صحيحة. الآن يمكنك كشف الإجابة المرجعية ومقارنتها.':'ليست مكتملة الدقة. راجع العلامات الظاهرة ثم اكشف الإجابة المرجعية.';fb.className='i-feedback '+(ok?'ok':'no');document.getElementById('revealBank').disabled=false;markDone('بنك النهائي');
+ };
+ document.getElementById('revealBank').onclick=()=>document.getElementById('bankAnswer').classList.toggle('show');
+}
+function focusBankQuestion(){requestAnimationFrame(()=>{const list=document.getElementById('bankList');if(list)list.scrollIntoView({behavior:'smooth',block:'start'})})}
+document.getElementById('bankPrev').onclick=()=>{if(bankIndex>0){bankIndex--;renderBank();focusBankQuestion()}};
+document.getElementById('bankNext').onclick=()=>{const a=currentBank();if(bankIndex<a.length-1){bankIndex++;renderBank();focusBankQuestion()}};
+document.querySelectorAll('.bank-filter').forEach(b=>b.onclick=()=>{document.querySelectorAll('.bank-filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');bankFilter=b.dataset.filter;bankIndex=0;renderBank();focusBankQuestion()});
+
+
+const simPool=[
+ {q:'«الأمانةَ» في سياق الحث على خلق محمود: ما حكم حذف الفعل؟',o:['جائز','واجب','ممتنع','لا يوجد فعل محذوف'],a:0,e:'لأن المغرى به مفرد.'},
+ {q:'ما صورة «الصدقَ الصدقَ»؟',o:['مغرى به مفرد','مغرى به مكرر','مغرى به معطوف','محذر منه مكرر'],a:1,e:'التكرار ظاهر في اللفظ نفسه.'},
+ {q:'في «إياكَ من الإهمالِ» ما صورة التحذير؟',o:['إياك + و','إياك + من','محذر له + و','المحذر منه المفرد'],a:1,e:'إياك + من + المحذر منه.'},
+ {q:'«الكذبَ والنفاقَ» في سياق التحذير: ما حكم حذف الفعل؟',o:['جائز','واجب','يجوز الوجهان بلا قاعدة','الفعل مذكور'],a:1,e:'العطف من مواضع الحذف الواجب.'},
+ {q:'في «المزاحَ المزاحَ» ما إعراب الكلمة الثانية؟',o:['فاعل','مفعول به ثان','توكيد منصوب','معطوف'],a:2,e:'الثاني توكيد لفظي منصوب.'},
+ {q:'ما الفعل الأنسب في «المؤازرةَ المؤازرةَ» عند نصرة مظلوم؟',o:['احذر','اترك','الزم','ابتعد'],a:2,e:'السياق محمود، فهي إغراء.'},
+ {q:'ما الفعل الأنسب في «المؤازرةَ المؤازرةَ» عند نصرة ظالم؟',o:['الزم','احذر','احبب','واصل'],a:1,e:'السياق مكروه، فهي تحذير.'},
+ {q:'في «لسانكَ والكذبَ» ما التقدير المنهجي الأدق؟',o:['الزم لسانك والكذب','صن لسانك واحذر الكذب','احذر لسانك فقط','لا فعل محذوف'],a:1,e:'لكل جزء معنى يناسبه.'},
+ {q:'أي صورة تسمح بحذف الفعل جوازًا؟',o:['المغرى به المكرر','إياك + الواو','المحذر منه المفرد','المغرى به المعطوف'],a:2,e:'المفرد وحده موضع الجواز.'},
+ {q:'في «إياكم والتكاسلَ» إعراب «إياكم»:',o:['فاعل','ضمير في محل نصب مفعول به','مبتدأ','اسم مجرور'],a:1,e:'مفعول به لفعل محذوف وجوبًا.'},
+ {q:'الصورتان الأخريان للإغراء بعد المفرد هما:',o:['إياك + من، وإياك + أن','المكرر والمعطوف','المحذر له والمعطوف','النداء والاستفهام'],a:1,e:'الإغراء في المنهج: مفرد، مكرر، معطوف.'},
+ {q:'«إياكَ أن تكذبَ»: حذف الفعل هنا:',o:['واجب','جائز','ممتنع','الفعل ظاهر'],a:0,e:'هذه من صور إياك التي يجب فيها الحذف.'}
+];
+let simQs=[],simIndex=0,simScore=0,simAnswered=false;
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function startSim(){simQs=shuffle(simPool).slice(0,8);simIndex=0;simScore=0;renderSim()}
+function renderSim(){const area=document.getElementById('simArea');document.getElementById('simMeta').textContent=`السؤال ${simIndex+1} من 8 · ${simScore} صحيحة`;simAnswered=false;const x=simQs[simIndex];area.innerHTML=`<div class="sim-q"><h3>${x.q}</h3><p id="simExplain">اختر إجابة واحدة.</p><div class="sim-options">${x.o.map((v,i)=>`<button class="sim-option" data-so="${i}">${v}</button>`).join('')}</div><button class="sim-next" id="simNext" disabled>${simIndex===7?'النتيجة':'السؤال التالي'}</button></div>`;area.querySelectorAll('[data-so]').forEach(b=>b.onclick=()=>{if(simAnswered)return;simAnswered=true;const i=+b.dataset.so;if(i===x.a){b.classList.add('correct');simScore++}else{b.classList.add('wrong');area.querySelector(`[data-so="${x.a}"]`).classList.add('correct')}document.getElementById('simExplain').textContent=x.e;document.getElementById('simNext').disabled=false;document.getElementById('simMeta').textContent=`السؤال ${simIndex+1} من 8 · ${simScore} صحيحة`});document.getElementById('simNext').onclick=()=>{if(simIndex<7){simIndex++;renderSim()}else finishSim()}}
+function finishSim(){markDone('المحاكاة');const area=document.getElementById('simArea');const pct=Math.round(simScore/8*100);area.innerHTML=`<div class="sim-finish show"><div class="context-label" style="color:#aaa">انتهت المحاكاة</div><div class="score-big">${simScore}/8</div><p>${pct>=88?'إتقان ممتاز. انتقل إلى بنك النهائي وركز على الصياغة.':pct>=63?'الأساس جيد. أعد محور الحذف والمعنى قبل محاولة أخرى.':'أعد مختبر الاتجاه والحذف ثم جرّب من جديد.'}</p><button class="sim-next" onclick="startSim()">محاولة جديدة</button></div>`;document.getElementById('simMeta').textContent=`النتيجة ${pct}%`}
+
+renderDiscover();renderPatterns();renderDelete();renderParse();renderTransforms();renderBank();startSim();updateProgress();goPage(location.hash.slice(1)&&pageIds.includes(location.hash.slice(1))?location.hash.slice(1):'intro',false);
+</script>
+</body>
+</html>
