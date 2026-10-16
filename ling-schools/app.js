@@ -1,0 +1,8 @@
+
+const deck=document.getElementById('deck'),slides=[...document.querySelectorAll('.slide')],links=[...document.querySelectorAll('.nav a')];let current=0;
+function go(i){current=Math.max(0,Math.min(slides.length-1,i));slides[current].scrollIntoView({behavior:'smooth',block:'start'});links.forEach((a,j)=>a.classList.toggle('active',j===current));}
+document.addEventListener('keydown',e=>{const m=document.querySelector('.context-modal.is-open');if(m){if(e.key==='Escape'){m.classList.remove('is-open')}return;}if(['ArrowDown','ArrowLeft','PageDown',' '].includes(e.key)){e.preventDefault();go(current+1)}if(['ArrowUp','ArrowRight','PageUp'].includes(e.key)){e.preventDefault();go(current-1)}});
+const obs=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting&&en.intersectionRatio>.55){current=+en.target.dataset.index;links.forEach((a,j)=>a.classList.toggle('active',j===current));}}),{root:deck,threshold:[.55]});slides.forEach(s=>obs.observe(s));links[0]?.classList.add('active');
+document.querySelectorAll('[data-modal-open]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.modalOpen)?.classList.add('is-open')));
+document.querySelectorAll('[data-modal-close]').forEach(b=>b.addEventListener('click',()=>b.closest('.context-modal')?.classList.remove('is-open')));
+document.querySelectorAll('.quiz button').forEach(b=>b.addEventListener('click',()=>{const x=b.closest('.slide').querySelector('.answerbox');if(x)x.textContent=b.dataset.answer;}));
