@@ -36,6 +36,63 @@
 .exam-work{scroll-margin-top:160px}.exam-q-nav{scroll-margin-bottom:120px}
 @media(max-width:800px){.exam-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.exam-picker-heading{align-items:flex-start;flex-direction:column}.exam-tabs .exam-tab{padding:12px}.exam-title{font-size:12px}.exam-year-switch button{font-size:11px;padding:10px 12px}}
 @media(max-width:390px){.exam-year-switch span{font-size:10px}.exam-year-switch button{font-size:10px;padding:8px}.exam-picker-total{display:none}}
+
+/* بنك النهائي · تصميم النسخة الشاملة */
+html,body{overflow-x:clip}
+#bank .head{margin-bottom:20px}
+#bank .exam-picker-heading{margin-top:26px}
+#bank .exam-tabs{padding:5px 1px 12px;gap:9px;scroll-snap-type:x proximity}
+#bank .exam-tab{scroll-snap-align:start;border-radius:16px;display:flex;min-width:185px;flex-direction:column;align-items:flex-start;gap:2px;text-align:right;padding:12px 15px;box-shadow:0 2px 12px rgba(32,27,23,.025);transition:background .16s,border-color .16s,transform .16s}
+#bank .exam-tab:hover{border-color:var(--i);transform:translateY(-1px)}
+#bank .exam-tab.active{box-shadow:0 5px 17px rgba(30,30,30,.12)}
+#bank .exam-year-switch{padding:9px 0 16px;gap:16px}
+#bank .exam-work{grid-template-columns:minmax(310px,.94fr) minmax(0,1.06fr);gap:16px;align-items:start}
+#bank .paper-pane{top:118px;border-radius:16px;overflow:hidden;box-shadow:0 5px 26px rgba(27,22,16,.07)}
+#bank .paper-gallery{max-height:min(66vh,740px);overscroll-behavior:contain}
+#bank .paper-card{flex-basis:96%;border-radius:7px;overflow:hidden}
+#bank .paper-card:focus-visible{outline:3px solid var(--b);outline-offset:-4px}
+#bank .paper-help{font-size:11px}
+#bank .question-pane{position:relative;min-height:460px;padding:18px clamp(15px,2.4vw,31px) 145px;background:rgba(255,255,255,.62);border:1px solid var(--l);border-radius:16px;box-shadow:0 5px 24px rgba(27,22,16,.045)}
+#bank .question-title{font-size:clamp(21px,2.65vw,33px);line-height:1.45;margin:12px 0}
+#bank .exam-stem{border-radius:0 9px 9px 0;padding:14px 17px}
+#bank #examQuestion{scroll-margin-top:176px;min-height:230px}
+#bank .q-rail-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;font-size:12px}
+#bank .q-rail-head span{font-size:11px;color:var(--m)}
+#bank .question-rail{display:flex;flex-wrap:wrap;gap:7px;padding:11px 0 17px;border-bottom:1px solid var(--l);margin-bottom:14px}
+#bank .q-dot{border:1px solid var(--l);background:var(--w);font-size:12px;min-height:44px;min-width:44px;border-radius:12px;padding:6px 9px;color:#4d4842;display:grid;place-items:center;line-height:1.1;transition:background .18s,transform .18s}
+#bank .q-dot:hover{border-color:var(--i);transform:translateY(-1px)}
+#bank .q-dot.active{background:var(--i);border-color:var(--i);color:#fff}
+#bank .q-dot.answered:not(.active){background:#e5eee8;border-color:#8faea0;color:#275345}
+#bank .q-dot small{display:block;font-size:9px;font-weight:600}
+#bank .exam-q-nav{position:sticky;bottom:92px;z-index:9;background:rgba(255,253,248,.97);backdrop-filter:blur(13px);border:1px solid var(--l);border-radius:16px;padding:10px;box-shadow:0 5px 28px rgba(22,21,20,.1);margin-top:22px}
+#bank .exam-q-nav button{padding:11px 15px;border-radius:10px;white-space:nowrap;min-height:46px}
+#bank .exam-q-nav button:last-child{background:var(--i);color:#fff}
+#bank .exam-q-nav span{text-align:center;font-size:11px;line-height:1.4}
+#bank .paper-mobile-bar{display:none}
+#bank .written-input{width:100%;min-height:148px;border:1px solid var(--l);border-radius:12px;background:var(--w);padding:15px;line-height:1.8;resize:vertical;color:var(--i)}
+#bank .written-instructions{font-size:12px;color:var(--m);margin:10px 0}
+#bank .source-note{font-size:11px}
+@media(max-width:850px){
+ #bank .exam-work{display:flex;flex-direction:column}
+ #bank .question-pane{width:100%;order:0;padding:16px 12px 126px;min-height:calc(100vh - 165px)}
+ #bank .paper-pane{display:none;position:relative;top:auto;order:1;width:100%}
+ #bank .paper-mobile-bar{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:13px 0 19px}
+ #bank .paper-mobile-bar button{border:1px solid var(--i);border-radius:10px;background:var(--w);padding:11px 6px;font-size:11px;font-weight:800;min-height:45px}
+ #bank .paper-mobile-bar button:first-child{background:var(--i);color:#fff}
+ #bank .question-meta{flex-direction:row;align-items:center;flex-wrap:wrap}
+ #bank .question-rail{flex-wrap:nowrap;overflow:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+ #bank .q-dot{flex:0 0 auto;scroll-snap-align:start}
+ #bank .exam-q-nav{bottom:87px;padding:7px;gap:6px}
+ #bank .exam-q-nav button{padding:8px 9px;font-size:11px}
+ #bank .exam-q-nav span{font-size:10px}
+ #bank .exam-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;scroll-snap-type:none}
+ #bank .exam-tab{min-width:0;width:100%;padding:10px 12px}
+ #bank .exam-year-switch button{font-size:11px;padding:8px 10px}
+ #bank .exam-year-switch span{font-size:10px}
+}
+@media(max-width:470px){#bank .exam-summary{display:none}#bank .q-dot{min-width:45px}}
+@media(prefers-reduced-motion:reduce){#bank .exam-tab,#bank .q-dot{transition:none}}
+
 </style>
 </head><body>
 <header class="top"><div class="topin"><div class="brand"><div class="seal">م</div><div><b>مجلس المقامة</b><small>أدب المقامات · الصف الثاني عشر</small></div></div><nav class="nav" id="nav"></nav><div class="prog"><i></i><span id="progress">لم تبدأ بعد</span></div></div></header>
@@ -46,7 +103,10 @@
 <section class="page" id="characters"><div class="head"><div><div class="num">03 / الشخصيات</div><h2>من يروي؟ ومن يحتال؟</h2></div><p class="intro">افصل بين وظيفة الراوي ووظيفة البطل؛ فالاختبار كثيرًا ما يختبر الشخصية من سمتها أو دورها.</p></div><div class="switches"><button class="pill active" data-author="ham">الهمذاني</button><button class="pill" data-author="bar">البرّواني</button></div><div class="chars" id="chars"></div></section>
 <section class="page" id="kadiya"><div class="head"><div><div class="num">04 / النص والكدية</div><h2>لا تنخدع بظاهر الخطاب.</h2></div><p class="intro">الكدية غاية مادية، أما الوسيلة فقد تكون وعظًا أو شعرًا أو علمًا أو خطابًا دينيًا. هنا تتعلم كشف الطبقات.</p></div><div class="kadiya"><div class="scene"><div class="label" style="color:#aaa">المقامة الأذربيجانية · 2017/2018</div><div class="quote">«اللهم يا مبدئ الأشياء ومعيدها…»</div><p>طلب الاختبار تفسير التناقض بين الكدية والوسيلة المستخدمة لتحقيقها.</p></div><div class="layers"><div class="layer"><b>الوسيلة</b><span>خطاب ديني ودعاء واقتباس واستمالة للمتلقي.</span></div><div class="layer"><b>الغاية</b><span>الحصول على المال أو العطاء؛ أي الكدية.</span></div><div class="layer"><b>المفارقة</b><span>وسيلة دينية رفيعة في ظاهرها تُسخّر لتحقيق غرض مادي.</span></div><div class="layer"><b>جرّب</b><div class="opts" id="kopts" style="margin-top:10px"></div><div class="feed" id="kfb"></div></div></div></div><div class="panel textlab"><div class="tabs" id="tabs"></div><div class="stage"><div class="label">مختبر النص</div><div class="excerpt" id="excerpt"></div><p class="sub" id="tprompt"></p><div class="skills" id="skills"></div><div class="feed" id="tfb"></div></div></div></section>
 <section class="page" id="traps"><div class="head"><div><div class="num">05 / فخاخ النهائي</div><h2>ما الذي يغيّر الإجابة؟</h2></div><p class="intro">نقاط صغيرة لكنها تتكرر في الأسئلة، وتمنع الخلط بين عناصر المقامة.</p></div><div class="traps"><div class="trap"><div class="n">01</div><h3>المقامة ليست القصة نفسها.</h3><p>في الملخص: الراوي والبطل ثابتان وهميان، وتغلب الكدية، بينما القصة أوسع في الشخصيات والأفكار والبناء.</p></div><div class="trap"><div class="n">02</div><h3>عيسى بن هشام ليس البطل.</h3><p>عند الهمذاني هو <strong>الراوي</strong>، وأبو الفتح الإسكندري هو البطل.</p></div><div class="trap"><div class="n">03</div><h3>«فأنشأ يقول» علامة مهمة.</h3><p>إذا جاء الشعر بعد السرد النثري فالعنصر هو <strong>المزاوجة بين الشعر والنثر</strong>.</p></div><div class="trap"><div class="n">04</div><h3>الكدية ليست الوسيلة.</h3><p>الوعظ أو الشعر أو الخطاب الديني وسائل، أما الكدية فهي غاية الحصول على المال بالحيلة.</p></div><div class="trap"><div class="n">05</div><h3>السجع قرينة صوتية.</h3><p>ابحث عن توافق أواخر الجمل أو الألفاظ في الإيقاع، لا عن جمال العبارة فقط.</p></div><div class="trap"><div class="n">06</div><h3>للمقامة قيمتان.</h3><p><strong>تاريخية</strong> لتصوير جوانب من العصر، و<strong>فنية</strong> لإظهار البراعة اللغوية والأسلوبية.</p></div></div></section>
-<section class="page" id="bank"><div class="head"><div><div class="num">06 / بنك النهائي</div><h2>الاختبار أمامك… لا سؤال مبتور.</h2></div><p class="intro">ستة نماذج حقيقية من ملف ثراء. اقرأ صفحة الاختبار الأصلية داخل الموقع، كبّرها إن أردت، ثم حل أسئلتها واحدةً واحدة. لا تظهر الإجابة الرسمية إلا بعد المحاولة.</p></div><div class="exam-summary"><span>6 نماذج نهائية</span><span>صفحات الاختبار الأصلية</span><span>تنويع: اختيار · مطابقة · تحديد · متعدد</span><span>الإجابة الرسمية بعد المحاولة</span></div><div class="exam-picker-heading"><div><strong>اختر ورقة اختبار من القائمة</strong><p>جميع الاختبارات الستة متاحة، ولكل اختبار أسئلة مستقلة وصفحات أصلية قابلة للتكبير.</p></div><span class="exam-picker-total">٦ أوراق امتحانية</span></div><div class="exam-tabs" id="examTabs" aria-label="اختيار الاختبار النهائي"></div><div class="exam-year-switch"><button id="examYearPrev" type="button">الاختبار السابق</button><span id="examYearStatus" aria-live="polite"></span><button id="examYearNext" type="button">الاختبار التالي</button></div><div class="exam-work"><aside class="paper-pane"><div class="paper-head"><b id="paperTitle">ورقة الاختبار</b><div class="paper-actions"><button id="showQuestionPages" class="active">صفحات السؤال</button><button id="showAnswerPages">نموذج الإجابة</button></div></div><div class="paper-gallery" id="paperGallery"></div><div class="paper-help">اضغط على أي صفحة لتكبيرها. تبقى ورقة الاختبار أمامك أثناء الحل.</div></aside><section class="question-pane"><div class="question-meta"><div class="badges" id="examBadges"></div><div class="tiny" id="examQPos"></div></div><article id="examQuestion"></article><div class="exam-q-nav"><button id="examQPrev">السؤال السابق</button><span id="examSetProgress"></span><button id="examQNext">السؤال التالي</button></div></section></div></section>
+<section class="page" id="bank"><div class="head"><div><div class="num">06 / بنك النهائي</div><h2>الاختبار أمامك… لا سؤال مبتور.</h2></div><p class="intro">ستة نماذج حقيقية من ملف ثراء. اقرأ صفحة الاختبار الأصلية داخل الموقع، كبّرها إن أردت، ثم حل أسئلتها واحدةً واحدة. لا تظهر الإجابة الرسمية إلا بعد المحاولة.</p></div><div class="exam-summary"><span>6 نماذج نهائية · 25 سؤالًا رسميًا</span><span>صفحات الاختبار الأصلية</span><span>اختيار · مطابقة · استشهاد · إجابة تحريرية</span><span>الإجابة الرسمية بعد المحاولة</span></div><div class="exam-picker-heading"><div><strong>اختر ورقة اختبار من القائمة</strong><p>جميع الاختبارات الستة متاحة، ولكل اختبار أسئلة مستقلة وصفحات أصلية قابلة للتكبير.</p></div><span class="exam-picker-total">٦ أوراق امتحانية</span></div><div class="exam-tabs" id="examTabs" aria-label="اختيار الاختبار النهائي"></div><div class="exam-year-switch"><button id="examYearPrev" type="button">الاختبار السابق</button><span id="examYearStatus" aria-live="polite"></span><button id="examYearNext" type="button">الاختبار التالي</button></div><div class="exam-work"><aside class="paper-pane" id="paperPane"><div class="paper-head"><b id="paperTitle">ورقة الاختبار</b><div class="paper-actions"><button id="showQuestionPages" class="active">صفحات السؤال</button><button id="showAnswerPages">نموذج الإجابة</button></div></div><div class="paper-gallery" id="paperGallery"></div><div class="paper-help">اضغط على أي صفحة لتكبيرها. تبقى ورقة الاختبار أمامك أثناء الحل.</div></aside><section class="question-pane" id="questionPane"><div class="question-meta"><div class="badges" id="examBadges"></div><div class="tiny" id="examQPos"></div></div>
+<div class="paper-mobile-bar"><button id="openOriginal" type="button">عرض الصفحة الأصلية وتكبيرها</button><button id="openOfficialScan" type="button">صورة نموذج الإجابة</button></div>
+<div class="q-rail-head"><b>جميع أسئلة هذا الاختبار</b><span id="qRailCount"></span></div><nav class="question-rail" id="examQuestionRail" aria-label="أسئلة الاختبار الحالي"></nav>
+<article id="examQuestion"></article><div class="exam-q-nav"><button id="examQPrev">السؤال السابق</button><span id="examSetProgress"></span><button id="examQNext">السؤال التالي</button></div></section></div></section>
 <section class="page" id="sim"><div class="head"><div><div class="num">07 / المحاكاة</div><h2>اكشف المقامة بلا مساعدة.</h2></div><p class="intro">عشرة أسئلة عشوائية مستمدة في معظمها من أنماط الاختبارات النهائية، مع تغيير موضع الإجابة الصحيحة في كل محاولة.</p></div><div class="sim"><div class="simtop"><b>محاكاة أدب المقامات</b><span id="smeta">السؤال 1 من 10</span></div><div id="sarea"></div></div><div class="sources"><p><b>المصادر:</b> كتاب المؤنس للصف الثاني عشر – محور أدب المقامات ونصا المقامة القريضية والصحارية؛ ملخص المؤنس 2023؛ ملف مشروع ثراء للاختبارات النهائية، ومنه أُدرجت صفحات امتحانية فعلية ونماذج إجابة متاحة للسنوات 2013/2014، 2016/2017، 2017/2018، 2019/2020، 2022/2023.</p><p><b>مدرسة الإمام المهنا بن سلطان</b> · إعداد الموقع التفاعلي: د. ماجد الحسيني</p></div></section>
 </main><div class="switcher"><button id="prev">السابق</button><span id="pos"></span><button id="next">التالي</button></div><div class="scan-modal" id="scanModal" aria-hidden="true"><div class="scan-toolbar"><button id="scanClose">إغلاق</button><button id="scanMinus">−</button><span id="scanZoomText">100%</span><button id="scanPlus">+</button></div><div class="scan-stage"><img id="scanModalImg" alt="صفحة من الاختبار النهائي"></div></div><footer class="footer"><div>مجلس المقامة · أدب المقامات</div><span>إعداد الموقع التفاعلي: د. ماجد الحسيني</span></footer>
 <script>
@@ -63,6 +123,10 @@ const scanImgs={"p133":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAbQBtAAD/2wBDA
 
 const examSets=[
  {id:'kufa1314',year:'2013/2014',title:'المقامة الكوفية',pages:['p136','p137','p138'],answers:['p139'],questions:[
+  {type:'match',num:'س11',title:'استخرج من النص الشخصية ودورها وأبرز سماتها.',stem:'املأ عناصر الجدول كما جاءت في ورقة الاختبار: الشخصية، ودورها في المقامة، وسماتها.',rows:[
+    {p:'من الشخصية المحورية التي طُلب تحديدها؟',o:['أبو الفتح الإسكندري','عيسى بن هشام','السوادي','الشواء'],a:0},
+    {p:'ما دورها في المقامة؟',o:['البطل','الراوي','الكاتب','المجلس'],a:0},
+    {p:'ما السمة المرتبطة بها في نموذج الإجابة؟',o:['الاحتيال والفصاحة والقدرة الأدبية أو استخدام الشعر لتحقيق الغرض','الصمت والابتعاد عن الناس','رفض استخدام الشعر','الجهل باللغة'],a:0}],official:'الشخصية: أبو الفتح الإسكندري. دوره: البطل. ومن سماته المقبولة في النموذج: الاحتيال، أو القدرة اللغوية والأدبية، أو استخدام الشعر في المقامة.'},
   {type:'match',num:'س12',title:'انسب كل رغبة إلى صاحبها كما ورد في نموذج الإجابة.',stem:'ظهرت في النص رغبتان: مادية ومعنوية.',rows:[
    {p:'الرغبة المادية',o:['أبو الفتح الإسكندري / البطل','عيسى بن هشام / الراوي'],a:0},
    {p:'الرغبة المعنوية',o:['عيسى بن هشام / الراوي','أبو الفتح الإسكندري / البطل'],a:0}],official:'الرغبة المادية: أبو الفتح الإسكندري أو البطل. الرغبة المعنوية: عيسى بن هشام أو الراوي.'},
@@ -82,9 +146,11 @@ const examSets=[
   {type:'match',num:'س3',title:'اربط الشخصية بصفة بارزة قبل أن تكشف النموذج.',stem:'السؤال الأصلي طلب شخصيتين وصفة بارزة لكل واحدة.',rows:[
    {p:'عيسى بن هشام',o:['محتال، داهية، ذكي','ساذج، طيب','الفظاظة والشدة في المطالبة بالحق'],a:0},
    {p:'السوادي',o:['ساذج، طيب','محتال، داهية، ذكي','الفظاظة والشدة في المطالبة بالحق'],a:0},
-   {p:'الشواء',o:['الفظاظة والشدة في المطالبة بالحق','ساذج، طيب','محتال، داهية، ذكي'],a:0}],official:'من الإجابات المقبولة: عيسى بن هشام: محتال، داهية، ذكي. السوادي: ساذج، طيب. الشواء: الفظاظة والشدة في المطالبة بالحق أو إجادة الشواء.'}
+   {p:'الشواء',o:['الفظاظة والشدة في المطالبة بالحق','ساذج، طيب','محتال، داهية، ذكي'],a:0}],official:'من الإجابات المقبولة: عيسى بن هشام: محتال، داهية، ذكي. السوادي: ساذج، طيب. الشواء: الفظاظة والشدة في المطالبة بالحق أو إجادة الشواء.'},
+  {type:'evidence',num:'س4',title:'استشهد من المقامة بما يوافق الحكمة الواردة في السؤال.',stem:'اقرأ قول عمرو بن كلثوم في ورقة السؤال الأصلية، ثم اختر من نص المقامة ما يوافق معناه.',o:['«قد نبت الربيع على دمنته»','«لعن الله الشيطان»','«على كديتي»','«حفيت الرواحل»'],a:0,official:'«قد نبت الربيع على دمنته».'}
  ]},
  {id:'isf1617',year:'2016/2017',title:'المقامة الأصفهانية',pages:['p140','p141','p142'],answers:['p143'],questions:[
+  {type:'evidence',num:'س12',title:'استخرج الجملة التي قالها البطل لاستمالة الناس في بداية المقامة.',stem:'السؤال الرسمي: عند لحظة ظهور أبي الفتح الإسكندري في المقامة، ما العبارة التي دعا بها الناس إلى التوقف والاستماع له؟',o:['«من كان منكم يحب الصحابة والجماعة فليُنصت معي ساعة»','«والتفت لفتة فإذا هو والله أبو الفتح»','«حفيت الرواحل وأكلتها المراحل»','«قد نبت الربيع على دمنته»'],a:0,official:'«من كان منكم يحب الصحابة والجماعة فليُنصت معي ساعة».'},
   {type:'multi',num:'س13',title:'اختر وسيلتين استخدمهما البطل لإبقاء المصلين بعد الصلاة.',stem:'السؤال الأصلي يطلب اثنتين. اختر أي إجابتين صحيحتين من البدائل.',items:[
    {t:'تذكيرهم بحب الصحابة والجماعة',c:true},{t:'تشويقهم لبشارة النبي',c:true},{t:'ربط الخروج من المسجد بحدوث المكروه',c:true},{t:'توظيف مقدرته اللغوية',c:true},{t:'وعدهم بالطعام والمال مباشرة',c:false},{t:'إجبارهم بالقوة',c:false}],need:2,official:'يُقبل اثنان من: تذكيرهم بحب الصحابة والجماعة، تشويقهم لبشارة النبي، ربط الخروج من المسجد بحدوث المكروه، توظيف مقدرته اللغوية.'},
   {type:'choice',num:'س14',title:'فسّر التناقض بين الكدية والمكان الذي دارت فيه المقامة.',stem:'المكان هو المسجد، بينما يمارس البطل الكدية فيه.',o:['الكدية سلوك يتناقض مع حرمة المسجد باعتباره مكانًا للعبادة','لا يوجد أي تناقض','المشكلة أن المسجد بعيد عن المدينة','التناقض سببه وجود الشعر في المسجد'],a:0,official:'الكدية هي الاستعطاء بالحيلة، وهذا سلوك يتناقض مع حرمة المسجد باعتباره مكانًا للعبادة.'},
@@ -118,21 +184,38 @@ const examSets=[
    {p:'«هل من فتى فيكم كريم الحجر… مخشوش في عظيم الأجر»',o:['موضع الكدية','السجع','حديث مسند','ثنائية الشعر والنثر'],a:0}],official:'حديث مسند: «حدثنا عيسى بن هشام». ثنائية الشعر والنثر: الانتقال من السرد إلى الأبيات، ويقبل أي ثنائية شعرية نثرية من النص. السجع: تقبل الأمثلة الصحيحة مثل «غنم، شج، خرج» وغيرها. موضع الكدية: «هل من فتى فيكم كريم الحجر… مخشوش في عظيم الأجر».'}
  ]},
  {id:'iraq2223',year:'2022/2023',title:'المقامة العراقية',pages:['p151','p152'],answers:['p153'],questions:[
+  {type:'dual',num:'س9',title:'استخرج دليلين على اجتماعية شخصية أبي الفتح الإسكندري.',stem:'من الفقرة الأولى: ابحث عن دليلين على علاقته بالناس كما أوردهما نموذج الإجابة.',parts:[
+   {p:'الدليل الأول',o:['«قضى في الظلام»','«فأتبعت نفسي»','«حفيت الرواحل»'],a:0},
+   {p:'الدليل الثاني',o:['«يسأل الناس ويعظونه»','«أكلتها المراحل»','«جوابة الآفاق»'],a:0}],official:'الدليل الأول: «قضى في الظلام». الدليل الثاني: «يسأل الناس ويعظونه». راجع صورة نموذج الإجابة لتوثيق ضبط العبارة.'},
   {type:'match',num:'س10',title:'حدّد عنصر بنية المقامة مستعينًا بالقرينة.',stem:'ثلاثة عناصر وردت في جدول الاختبار.',rows:[
    {p:'«حدثنا عيسى بن هشام»',o:['حديث مسند','سجع أو جناس','العنوان'],a:0},
    {p:'«فوالله ما شككت في جوابه، ولا اهتديت لوجه صوابه»',o:['سجع أو جناس','حديث مسند','العنوان'],a:0},
    {p:'اسم النص: المقامة العراقية',o:['العنوان','حديث مسند','سجع أو جناس'],a:0}],official:'حديث مسند: «حدثنا عيسى بن هشام». السجع أو الجناس: «فوالله ما شككت في جوابه، ولا اهتديت لوجه صوابه». العنوان: المقامة العراقية.'},
+  {type:'written',num:'س11',title:'استخرج حكمتين نقديتين من المقامة.',stem:'اقرأ فقرة أبي الفتح والأبيات في ورقة المقامة العراقية، ثم اكتب حكمتين نقديتين وردتا فيها. يمكن أن تذكر بيتًا كاملًا أو نص الحكمة.',placeholder:'الحكمة الأولى: …\nالحكمة الثانية: …',official:'في نموذج الإجابة أمثلة متعددة من أبيات أبي الفتح، ومنها قول الأعشى الذي يبدأ «دراهمنا كلها جيد»، والبيت الذي يبدأ «ولم أدرِ من ألقى عليه ردائه». يُكتفى بحكمتين، ولكل واحدة درجة. النص الشعري الكامل موثّق في صورة نموذج الإجابة المرفق.'},
+  {type:'evidence',num:'س12',title:'استدل من المقامة على شكوى أبي الفتح من الزمان.',stem:'السؤال الرسمي: رأى بعض علماء النفس أن الشكوى من الزمان من أقدم أسباب الإحباط لدى البشر؛ استخرج من المقامة ما يدل على هذه الشكوى.',o:['«بؤسًا لهذا الزمان من زمن… كل تصاريف أمره عجب»','«فوالله ما شككت في جوابه»','«حفيت الرواحل وأكلتها المراحل»','«من كان منكم يحب الصحابة»'],a:0,official:'«بؤسًا لهذا الزمان من زمن … كل تصاريف أمره عجب». وتُقبل العبارة الدالة على شكوى البطل من الزمان كما وردت في النص.'},
   {type:'multi',num:'س13',title:'لماذا ليست المقامة السابقة قصة حقيقية؟',stem:'نموذج الإجابة يطلب ثلاثة أسباب. اختر أي ثلاثة صحيحة.',items:[
    {t:'خلو المقامة من أهم مميزات القصة وهي العقدة',c:true},{t:'خلوها من الشخصيات الروائية الممتازة',c:true},{t:'خلوها من تحليل نفسيات الشخصيات ودراسة أخلاقها واعتمادها على حيل تفسر حياة المكدي',c:true},{t:'انحرافها عن الموضوع إلى الأسلوب',c:true},{t:'اعتمادها على غرض الموعظة أو النكتة المستملحة والألغاز النحوية بلغة جزلة كثيرة الغريب والسجع',c:true},{t:'لأنها تخلو تمامًا من الحوار',c:false},{t:'لأنها لا تحتوي أي حدث أو شخصية',c:false}],need:3,official:'يُكتفى بثلاثة من الأسباب التي ذكرها النموذج: خلوها من العقدة، أو الشخصيات الروائية الممتازة، أو التحليل النفسي ودراسة الأخلاق، أو انحرافها من الموضوع إلى الأسلوب، أو اعتمادها على الموعظة/النكتة/الألغاز بلغة جزلة كثيرة الغريب والسجع.'}
  ]}
 ];
 let examSetI=0,examQI=0,showAnswers=false;
+const attempts=Object.create(null);
+const qkey=()=>`${examSet().id}:${examQI}`;
+function scrollToQuestion(){const el=document.getElementById('questionPane');const y=el.getBoundingClientRect().top+window.scrollY-125;window.scrollTo({top:Math.max(0,y),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+function selectQuestion(i){if(i<0||i>=examSet().questions.length)return;examQI=i;renderExamQuestion();scrollToQuestion()}
+function renderQuestionRail(){
+ const el=document.getElementById('examQuestionRail');el.replaceChildren();
+ const qs=examSet().questions;document.getElementById('qRailCount').textContent=`${qs.length} من ${qs.length} أسئلة رسمية · ${Object.keys(attempts).filter(k=>k.startsWith(examSet().id+':')).length} تمت محاولتها`;
+ qs.forEach((q,i)=>{let b=document.createElement('button');b.type='button';b.className='q-dot'+(i===examQI?' active':'')+(attempts[`${examSet().id}:${i}`]?' answered':'');b.innerHTML=`<b>${q.num}</b><small>${i+1} / ${qs.length}</small>`;b.title=q.title;b.setAttribute('aria-label',`الانتقال إلى ${q.num}: ${q.title}`);b.setAttribute('aria-current',i===examQI?'step':'false');b.onclick=()=>selectQuestion(i);el.appendChild(b)});
+ /* Keep scroll local to the numbered rail; do not scroll the full RTL document. */
+ if(el.scrollWidth>el.clientWidth){const current=el.querySelector('.active');if(current){el.scrollLeft=0;}}
+}
+
 function examSet(){return examSets[examSetI]}
 function selectExam(i, jump=true){
  if(i<0||i>=examSets.length)return;
  examSetI=i;examQI=0;showAnswers=false;
  renderExamTabs();renderPaper();renderExamQuestion();
- if(jump)document.querySelector('.exam-work').scrollIntoView({behavior:'smooth',block:'start'});
+ if(jump)scrollToQuestion();
 }
 function renderExamTabs(){
  examTabs.innerHTML='';
@@ -155,13 +238,20 @@ showQuestionPages.onclick=()=>{showAnswers=false;renderPaper()};showAnswerPages.
 let scanZoom=1;function openScan(k){scanZoom=1;scanModalImg.src=scanImgs[k];scanModalImg.style.transform='scale(1)';scanZoomText.textContent='100%';scanModal.classList.add('show');scanModal.setAttribute('aria-hidden','false')}function setScanZoom(z){scanZoom=Math.max(.7,Math.min(2.5,z));scanModalImg.style.transform=`scale(${scanZoom})`;scanZoomText.textContent=`${Math.round(scanZoom*100)}%`}scanClose.onclick=()=>{scanModal.classList.remove('show');scanModal.setAttribute('aria-hidden','true')};scanPlus.onclick=()=>setScanZoom(scanZoom+.2);scanMinus.onclick=()=>setScanZoom(scanZoom-.2);scanModal.onclick=e=>{if(e.target===scanModal)scanClose.click()};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&scanModal.classList.contains('show'))scanClose.click()});
 function examMeta(q){examBadges.innerHTML=`<span class="badge official">سؤال رسمي</span><span class="badge">${examSet().year}</span><span class="badge">${q.num}</span><span class="badge model">نموذج إجابة موثّق</span>`;examQPos.textContent=`${examQI+1} / ${examSet().questions.length}`;examSetProgress.textContent=`${examSet().title} · السؤال ${examQI+1} من ${examSet().questions.length}`;examQPrev.disabled=examQI===0&&examSetI===0;examQNext.disabled=examQI===examSet().questions.length-1&&examSetI===examSets.length-1;examQPrev.textContent=examQI===0?'الاختبار السابق':'السؤال السابق';examQNext.textContent=examQI===examSet().questions.length-1?'الاختبار التالي':'السؤال التالي'}
 function qShell(q){return `<div class="question-source">اقرأ الصفحة الأصلية في الجهة المقابلة أولًا</div><div class="question-title">${q.title}</div><div class="exam-stem">${q.stem||''}</div><div id="qInteract"></div><div class="feed" id="qFeed"></div><div class="q-actions"><button class="q-reveal" id="qReveal" disabled>اكشف نموذج الإجابة الرسمي</button></div><div class="official-answer" id="qOfficial"><b>${q.official}</b><div class="source-note">من نموذج الإجابة المرفق في ملف ثراء.</div></div>`}
-function markAttempt(ok,msg){qFeed.textContent=msg||(ok?'إجابة صحيحة.':'راجع العناصر المعلّمة ثم قارنها بالنموذج الرسمي.');qFeed.className='feed '+(ok?'ok':'no');qReveal.disabled=false;save('بنك النهائي')}
-function renderExamQuestion(){const q=examSet().questions[examQI];examMeta(q);examQuestion.innerHTML=qShell(q);qReveal.onclick=()=>qOfficial.classList.toggle('show');const r=qInteract;if(q.type==='choice'||q.type==='evidence'){const cls=q.type==='evidence'?'evidence-list':'opts';r.className=cls;const order=sh(q.o.map((t,i)=>({t,i})));order.forEach(z=>{const b=document.createElement('button');b.className=q.type==='evidence'?'evidence':'opt';b.textContent=z.t;b.dataset.i=z.i;b.onclick=()=>{if(r.dataset.lock)return;r.dataset.lock='1';r.querySelectorAll('button').forEach(x=>{const k=+x.dataset.i;if(k===q.a)x.classList.add('correct');else if(k===z.i)x.classList.add('wrong')});markAttempt(z.i===q.a)};r.appendChild(b)})}
+function markAttempt(ok,msg){qFeed.textContent=msg||(ok?'إجابة صحيحة.':'راجع العناصر المعلّمة ثم قارنها بالنموذج الرسمي.');qFeed.className='feed '+(ok?'ok':'no');qReveal.disabled=false;attempts[qkey()]={ok,at:Date.now()};renderQuestionRail();save('بنك النهائي')}
+function renderExamQuestion(){const q=examSet().questions[examQI];examMeta(q);renderQuestionRail();examQuestion.innerHTML=qShell(q);qReveal.onclick=()=>qOfficial.classList.toggle('show');const r=qInteract;if(q.type==='choice'||q.type==='evidence'){const cls=q.type==='evidence'?'evidence-list':'opts';r.className=cls;const order=sh(q.o.map((t,i)=>({t,i})));order.forEach(z=>{const b=document.createElement('button');b.className=q.type==='evidence'?'evidence':'opt';b.textContent=z.t;b.dataset.i=z.i;b.onclick=()=>{if(r.dataset.lock)return;r.dataset.lock='1';r.querySelectorAll('button').forEach(x=>{const k=+x.dataset.i;if(k===q.a)x.classList.add('correct');else if(k===z.i)x.classList.add('wrong')});markAttempt(z.i===q.a)};r.appendChild(b)})}
  else if(q.type==='match'){r.className='match-grid';const picks=[];q.rows.forEach((row,ri)=>{const div=document.createElement('div');div.className='match-row';div.innerHTML=`<div class="match-prompt">${row.p}</div><div class="match-options"></div>`;const ops=div.querySelector('.match-options');sh(row.o.map((t,i)=>({t,i}))).forEach(z=>{const b=document.createElement('button');b.className='match-opt';b.textContent=z.t;b.dataset.i=z.i;b.onclick=()=>{ops.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');picks[ri]=z.i};ops.appendChild(b)});r.appendChild(div)});const c=document.createElement('button');c.className='q-check';c.textContent='تحقق من المطابقة';c.onclick=()=>{if(picks.filter(v=>v!==undefined).length<q.rows.length){markAttempt(false,'أكمل جميع الصفوف أولًا.');return}let ok=true;r.querySelectorAll('.match-row').forEach((rowEl,ri)=>{rowEl.querySelectorAll('.match-opt').forEach(b=>{const k=+b.dataset.i;if(k===q.rows[ri].a)b.classList.add('correct');else if(b.classList.contains('selected'))b.classList.add('wrong')});if(picks[ri]!==q.rows[ri].a)ok=false});c.disabled=true;markAttempt(ok)};r.appendChild(c)}
  else if(q.type==='multi'){r.className='multi-list';const shuffled=sh(q.items.map((x,i)=>({...x,i})));shuffled.forEach(z=>{const lab=document.createElement('label');lab.className='multi-item';lab.dataset.i=z.i;lab.innerHTML=`<input type="checkbox"><span>${z.t}</span>`;r.appendChild(lab)});const c=document.createElement('button');c.className='q-check';c.textContent=`تحقق من الاختيارات`;c.onclick=()=>{const selected=[...r.querySelectorAll('.multi-item')].filter(x=>x.querySelector('input').checked);if(selected.length<q.need){markAttempt(false,`اختر ${q.need} على الأقل قبل التحقق.`);return}let ok=true;r.querySelectorAll('.multi-item').forEach(el=>{const item=q.items[+el.dataset.i],chosen=el.querySelector('input').checked;if(item.c)el.classList.add('correct');if(chosen&&!item.c)el.classList.add('wrong');if(chosen!==item.c && (chosen||selected.length===q.items.filter(x=>x.c).length))ok=false});if(selected.length!==q.need&&q.items.filter(x=>x.c).length>q.need){ok=selected.every(el=>q.items[+el.dataset.i].c)}else{ok=selected.every(el=>q.items[+el.dataset.i].c)&&selected.length===q.need}c.disabled=true;markAttempt(ok,ok?'اختياراتك صحيحة وفق المطلوب في السؤال.':'بعض الاختيارات ليست من الإجابات المقبولة في النموذج.')};r.appendChild(c)}
+ else if(q.type==='written'){
+   r.className='written-response';const ta=document.createElement('textarea');ta.className='written-input';ta.dir='rtl';ta.placeholder=(q.placeholder||'اكتب إجابتك هنا…').replace(/\n/g,'\n');ta.setAttribute('aria-label','مساحة إجابتك');r.appendChild(ta);
+   const hint=document.createElement('p');hint.className='written-instructions';hint.textContent='أجب أولًا، ثم قارِن بما ورد في نموذج الإجابة الأصلي. لا يصحح الموقع الأسئلة المقالية آليًا.';r.appendChild(hint);
+   const b=document.createElement('button');b.type='button';b.className='q-check';b.textContent='انتهيت من الإجابة · قارن بالنموذج';b.onclick=()=>{if(!ta.value.trim()){ta.focus();return}ta.disabled=true;b.disabled=true;markAttempt(true,'تم تسجيل إجابتك للمقارنة الذاتية؛ اضغط «اكشف نموذج الإجابة الرسمي» للتحقق منها.')};r.appendChild(b);
+ }
  else if(q.type==='dual'){r.className='dual-grid';const picks=[];q.parts.forEach((part,pi)=>{const card=document.createElement('div');card.className='dual-card';card.innerHTML=`<h4>${part.p}</h4><div class="match-options"></div>`;const ops=card.querySelector('.match-options');sh(part.o.map((t,i)=>({t,i}))).forEach(z=>{const b=document.createElement('button');b.className='match-opt';b.textContent=z.t;b.dataset.i=z.i;b.onclick=()=>{ops.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');picks[pi]=z.i};ops.appendChild(b)});r.appendChild(card)});const c=document.createElement('button');c.className='q-check';c.style.gridColumn='1/-1';c.textContent='تحقق من الجزأين';c.onclick=()=>{if(picks.filter(v=>v!==undefined).length<q.parts.length){markAttempt(false,'أجب عن الجزأين أولًا.');return}let ok=true;r.querySelectorAll('.dual-card').forEach((card,pi)=>{card.querySelectorAll('.match-opt').forEach(b=>{const k=+b.dataset.i;if(k===q.parts[pi].a)b.classList.add('correct');else if(b.classList.contains('selected'))b.classList.add('wrong')});if(picks[pi]!==q.parts[pi].a)ok=false});c.disabled=true;markAttempt(ok)};r.appendChild(c)} }
-examQPrev.onclick=()=>{if(examQI>0){examQI--;renderExamQuestion();examQuestion.scrollIntoView({behavior:'smooth',block:'start'})}else if(examSetI>0){selectExam(examSetI-1)}};
-examQNext.onclick=()=>{if(examQI<examSet().questions.length-1){examQI++;renderExamQuestion();examQuestion.scrollIntoView({behavior:'smooth',block:'start'})}else if(examSetI<examSets.length-1){selectExam(examSetI+1)}};
+examQPrev.onclick=()=>{if(examQI>0)selectQuestion(examQI-1);else if(examSetI>0)selectExam(examSetI-1)};
+examQNext.onclick=()=>{if(examQI<examSet().questions.length-1)selectQuestion(examQI+1);else if(examSetI<examSets.length-1)selectExam(examSetI+1)};
+document.getElementById('openOriginal').onclick=()=>openScan(examSet().pages[0]);
+document.getElementById('openOfficialScan').onclick=()=>openScan(examSet().answers[0]);
 const pool=[
 ['في 2013/2014: صاحب الرغبة المادية في المقامة الكوفية هو:',['أبو الفتح الإسكندري / البطل','عيسى بن هشام / الراوي','هلال بن إياس','الحارث أبو الهيثم'],0,'مطابق لنموذج الإجابة.'],
 ['القرينة «الرزق المر» تدل على عنصر:',['الشكوى من الدهر','المجلس','حديث مسند','العنوان'],0,'هذا هو العنصر المقبول في النموذج.'],
