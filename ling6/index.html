@@ -217,6 +217,40 @@ body.context-open{overflow:hidden}
   .expand-examples{grid-template-columns:1fr}
   .lesson-help{font-size:9.5px}
 }
+
+/* Arabic comparative examples of semantics/pragmatics */
+.sp-modal{width:min(1010px,96vw);max-height:91vh;padding:24px 26px;overscroll-behavior:contain}
+.sp-modal h3{font-size:26px;line-height:1.65;color:var(--navy);margin:4px 40px 8px 0}
+.sp-modal p.sp-lead{font-size:11.5px;line-height:1.95;margin:0 0 13px}
+.sp-cases{display:grid;gap:9px}
+.sp-case{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fffaf1}
+.sp-case[open]{border-color:#c9a575;box-shadow:0 7px 20px rgba(76,54,28,.08)}
+.sp-case summary{display:flex;align-items:center;gap:12px;cursor:pointer;padding:10px 14px;list-style:none}
+.sp-case summary::-webkit-details-marker{display:none}
+.sp-num{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--navy);color:white;font-size:12px;font-weight:800}
+.sp-title{font-size:12px;font-weight:850;color:var(--navy);flex:1}
+.sp-more{font-size:9px;font-weight:700;color:#8b6e47}
+.sp-case[open] .sp-more{font-size:0}
+.sp-case[open] .sp-more::after{content:"إخفاء المقارنة";font-size:9px}
+.sp-content{padding:0 13px 12px;border-top:1px solid #e9dcc8}
+.sp-sem{background:#edf3f4;border:1px solid #d0dfe4;border-radius:11px;padding:8px 12px;margin-top:11px}
+.sp-sem b,.sp-context strong{font-size:10px;color:var(--navy)}
+.sp-modal .sp-sem p{font-size:11.2px;line-height:1.8;margin:2px 0 0}
+.sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:9px}
+.sp-context{background:#fffdf9;border:1px solid #e7d9c6;border-radius:11px;padding:9px 11px}
+.sp-context span{font-size:10px;color:#84653d;font-weight:800}
+.sp-modal .sp-context p{margin:4px 0 7px;font-size:10.6px;line-height:1.75}
+.sp-modal .sp-context p.sp-prag{color:#42644a;font-weight:750;margin-bottom:0}
+.sp-test{margin-top:9px;padding:9px 12px;background:#f6eddf;border:1px dashed #d7bc95;border-radius:11px}
+.sp-test b{font-size:10px;color:#845e2f}
+.sp-modal .sp-test p{font-size:10px;line-height:1.85;margin:3px 0 0}
+.sp-note{font-size:9px;color:#83725f;line-height:1.7;margin-top:7px}
+.sp-reminder{margin:13px 0;padding:10px 13px;background:#edf3ee;border:1px solid #cbd9cb;border-radius:11px;font-size:10.5px;line-height:1.8;color:#426047}
+.sp-references>b{font-size:11px;color:var(--navy)}
+.sp-references .context-links{margin-top:7px}
+.sp-references .context-links a{font-size:9px}
+@media(max-width:650px){.sp-modal{padding:14px 12px;width:98vw;max-height:95vh}.sp-modal h3{font-size:22px}.sp-grid{grid-template-columns:1fr}.sp-case summary{gap:8px;padding:10px}.sp-title{font-size:11px}}
+
 </style>
 </head>
 <body>
@@ -323,7 +357,7 @@ body.context-open{overflow:hidden}
 <div class="choice-panel"><b>Pragmatics</b><p>المعنى في الاستعمال والموقف التخاطبي.</p></div>
 </div>
 <div class="prompt">س: ما الفرق بين الدلالة والتداول؟</div>
-<button class="context-info" data-modal-open="semPragModal">ⓘ إثراء شارح</button>
+<button class="context-info" data-modal-open="semPragModal" type="button">ⓘ ٦ أمثلة عربية: الجملة نفسها في سياقين</button>
 </main>
 <div class="source">المصدر: سؤال العرض المرئي، الشريحة 5؛ التفصيل في الشرائح 5–6 والمذكرة ص 35.</div>
 </div>
@@ -916,15 +950,75 @@ body.context-open{overflow:hidden}
 </div>
 <div aria-hidden="true" class="context-modal" id="semPragModal">
 <div class="context-backdrop" data-modal-close=""></div>
-<section aria-modal="true" class="context-card" role="dialog">
-<button aria-label="إغلاق" class="context-close" data-modal-close="">×</button>
-<div class="context-kicker">إثراء خارجي اختياري</div>
-<h3>الدلالة والتداول: الفرق في سؤال واحد</h3>
-<p>الدلالة تسأل عادة عن المعنى الذي توفره التعبيرات ونظم تركيبها، بينما يركّز التداول على الاستعمال الفعلي للملفوظ، وقصد المتكلم، والظروف التي تغيّر ما يُفهم منه.</p>
+<section aria-labelledby="sp-modal-title" aria-modal="true" class="context-card sp-modal" role="dialog">
+<button aria-label="إغلاق" class="context-close" data-modal-close="" type="button">×</button>
+<div class="context-kicker">تطبيق إثرائي اختياري · أمثلة عربية</div>
+<h3 id="sp-modal-title">الجملة نفسها، والمقصد يتغير</h3>
+<p class="sp-lead">افتح إحدى البطاقات الست. في كل بطاقة تبقى الجملة واحدة ويُقارن معناها اللغوي بما قد يُراد بها في <b>موقفين مختلفين</b>.</p>
+<div class="sp-cases"><details class="sp-case" open>
+<summary><span class="sp-num">1</span><span class="sp-title">النافذة مفتوحة.</span><span class="sp-more">افتح المقارنة</span></summary>
+<div class="sp-content">
+<div class="sp-sem"><b>المعنى الدلالي الأساسي</b><p>تصف العبارة كون النافذة غير مغلقة، ولا تتضمن بذاتها أمرًا مباشرًا.</p></div>
+<div class="sp-grid"><div class="sp-context"><span>السياق الأول</span><p>موظف يتفقد نوافذ القاعة ويسجل حالتها.</p><strong>المقصد التداولي</strong><p class="sp-prag">إخبار وصفي وتوثيق للحالة.</p></div>
+<div class="sp-context"><span>السياق الثاني</span><p>شخص يشعر بالبرد يقولها لزميل يجلس قرب النافذة.</p><strong>المقصد التداولي</strong><p class="sp-prag">قد يقصد طلبًا غير مباشر: «أغلق النافذة، من فضلك».</p></div></div>
+<div class="sp-test"><b>سؤال تفكير</b><p>ماذا أضافت حاجة المتكلم إلى الدفء وموقع المخاطَب؟</p></div>
+<div class="sp-note">مثال عربي أُعد خصيصًا للشرح.</div>
+</div></details>
+<details class="sp-case" >
+<summary><span class="sp-num">2</span><span class="sp-title">إنها ستمطر.</span><span class="sp-more">افتح المقارنة</span></summary>
+<div class="sp-content">
+<div class="sp-sem"><b>المعنى الدلالي الأساسي</b><p>تفيد توقع نزول المطر لاحقًا.</p></div>
+<div class="sp-grid"><div class="sp-context"><span>السياق الأول</span><p>مذيع يقرأ توقعات الطقس في النشرة الجوية.</p><strong>المقصد التداولي</strong><p class="sp-prag">تقرير وتوقع مرتبط بحالة الجو.</p></div>
+<div class="sp-context"><span>السياق الثاني</span><p>أب يقولها لابنه وهو يستعد للخروج من المنزل دون مظلة.</p><strong>المقصد التداولي</strong><p class="sp-prag">قد تكون تحذيرًا أو نصحًا بأخذ مظلة وتأجيل الخروج.</p></div></div>
+<div class="sp-test"><b>سؤال تفكير</b><p>لماذا أصبحت الجملة الخبرية تحذيرًا دون أن يتغير لفظها؟</p></div>
+<div class="sp-note">مستوحى من مثال أورده بحث عربي عن التداولية.</div>
+</div></details>
+<details class="sp-case" >
+<summary><span class="sp-num">3</span><span class="sp-title">هل يمكنك إغلاق الباب؟</span><span class="sp-more">افتح المقارنة</span></summary>
+<div class="sp-content">
+<div class="sp-sem"><b>المعنى الدلالي الأساسي</b><p>استفهام في صيغته عن قدرة المخاطَب على إغلاق الباب.</p></div>
+<div class="sp-grid"><div class="sp-context"><span>السياق الأول</span><p>اختصاصي يسأل شخصًا يتعافى من إصابة ليتحقق من قدرته الجسدية.</p><strong>المقصد التداولي</strong><p class="sp-prag">استفهام حقيقي؛ الجواب المتوقع يتعلق بالاستطاعة.</p></div>
+<div class="sp-context"><span>السياق الثاني</span><p>طالب يجلس بجوار باب القاعة ويطلب العبارة من زميله القريب.</p><strong>المقصد التداولي</strong><p class="sp-prag">طلب مهذب لتنفيذ الفعل، لا مجرد سؤال عن القدرة.</p></div></div>
+<div class="sp-test"><b>سؤال تفكير</b><p>هل تكفي إجابة «نعم أستطيع» دون إغلاق الباب في الموقف الثاني؟</p></div>
+<div class="sp-note">مبني على المثال التعليمي المذكور في محاضرات جامعة المسيلة.</div>
+</div></details>
+<details class="sp-case" >
+<summary><span class="sp-num">4</span><span class="sp-title">انتهى الوقت.</span><span class="sp-more">افتح المقارنة</span></summary>
+<div class="sp-content">
+<div class="sp-sem"><b>المعنى الدلالي الأساسي</b><p>تدل العبارة على انقضاء مدة محددة.</p></div>
+<div class="sp-grid"><div class="sp-context"><span>السياق الأول</span><p>مشرف ينظر إلى مؤقت تجربة مخبرية ويعلن انقضاء المدة.</p><strong>المقصد التداولي</strong><p class="sp-prag">إخبار عن انتهاء الزمن المخصص.</p></div>
+<div class="sp-context"><span>السياق الثاني</span><p>مراقب امتحان يخاطب الطلاب عند نهاية الاختبار.</p><strong>المقصد التداولي</strong><p class="sp-prag">تنبيه يحمل توجيهًا عمليًا بالتوقف عن الكتابة وتسليم الأوراق.</p></div></div>
+<div class="sp-test"><b>سؤال تفكير</b><p>ما الفعل المتوقع من الطلاب وإن لم يُذكر صراحة؟</p></div>
+<div class="sp-note">مثال من بيئة التعليم الجامعي، صيغ خصيصًا للشرح.</div>
+</div></details>
+<details class="sp-case" >
+<summary><span class="sp-num">5</span><span class="sp-title">هذا عمل رائع!</span><span class="sp-more">افتح المقارنة</span></summary>
+<div class="sp-content">
+<div class="sp-sem"><b>المعنى الدلالي الأساسي</b><p>تحمل العبارة في أصلها تقييمًا إيجابيًا للعمل.</p></div>
+<div class="sp-grid"><div class="sp-context"><span>السياق الأول</span><p>أستاذ يمدح مشروعًا طلابيًا متقنًا بنبرة إعجاب.</p><strong>المقصد التداولي</strong><p class="sp-prag">مدح وثناء صادق.</p></div>
+<div class="sp-context"><span>السياق الثاني</span><p>شخص يقولها بنبرة ساخرة بعد أن أفسد زميله العمل.</p><strong>المقصد التداولي</strong><p class="sp-prag">قد تعني الاستهجان والتوبيخ خلافًا لظاهر المدح.</p></div></div>
+<div class="sp-test"><b>سؤال تفكير</b><p>كيف غيّرت النبرة والموقف مقصد الكلام؟</p></div>
+<div class="sp-note">مثال عربي على السخرية مستند إلى شرح محاضرات جامعة المسيلة.</div>
+</div></details>
+<details class="sp-case" >
+<summary><span class="sp-num">6</span><span class="sp-title">رجال الشرطة يحاصرون المكان.</span><span class="sp-more">افتح المقارنة</span></summary>
+<div class="sp-content">
+<div class="sp-sem"><b>المعنى الدلالي الأساسي</b><p>تفيد العبارة أن رجال الشرطة يطوّقون موقعًا ما.</p></div>
+<div class="sp-grid"><div class="sp-context"><span>السياق الأول</span><p>مراسل ينقل وصفًا ميدانيًا لانتشار قوات الشرطة.</p><strong>المقصد التداولي</strong><p class="sp-prag">نقل خبر عن واقعة أمنية.</p></div>
+<div class="sp-context"><span>السياق الثاني</span><p>شاهد قلق يسأل: «هل يستطيع المشتبه به الهرب؟» فيجيبه مرافقه بهذه العبارة.</p><strong>المقصد التداولي</strong><p class="sp-prag">قد يكون القصد طمأنته بأن الهرب أصبح أصعب، وهو استنتاج غير منطوق.</p></div></div>
+<div class="sp-test"><b>سؤال تفكير</b><p>هل «لن يستطيع الهرب» جزء صريح من الجملة أم نتيجة يستدل عليها السامع؟</p></div>
+<div class="sp-note">مبني على المثال الذي ناقشه مقال «المعنى بين الدلالة والتداولية».</div>
+</div></details></div>
+<div class="sp-reminder"><b>قاعدة مهمة:</b> التفسير التداولي ليس ثابتًا في جميع المواقف؛ وإنما يستدل السامع على قصد المتكلم اعتمادًا على القرائن والسياق.</div>
+<div class="sp-references">
+<b>مصادر عربية للاستزادة</b>
 <div class="context-links">
-<a href="https://plato.stanford.edu/entries/pragmatics/" rel="noopener" target="_blank">Stanford Encyclopedia — Pragmatics</a>
-</div>
-<div class="context-note">هذا الشرح للتثبيت والمقارنة فقط؛ مادة الاختبار تبقى وفق العرض والمذكرة.</div>
+<a href="https://depot.univ-msila.dz/server/api/core/bitstreams/71f0b8e4-a643-4ed5-b379-bfee34edc50e/content" target="_blank" rel="noopener noreferrer">جامعة المسيلة · محاضرات في علم الدلالة</a>
+<a href="https://library.ksaa.gov.sa/links/emags/lesaneyat_11.pdf" target="_blank" rel="noopener noreferrer">مجلة اللسانيات العربية · الدلالة والتداول</a>
+<a href="https://www.alriyadh.com/2101816" target="_blank" rel="noopener noreferrer">مقال المعنى بين الدلالة والتداولية</a>
+<a href="https://www.madaratthakafia.com/2021/12/tadawilya.html" target="_blank" rel="noopener noreferrer">دراسة عربية في التداولية وأفعال الكلام</a>
+</div></div>
+<div class="context-note">المقارنات الست نماذج تعليمية عربية أو أمثلة أعيدت صياغة سياقاتها؛ لا يُنسب نصها حرفيًا إلى المراجع، ولا تعد إضافة إلى نطاق المادة المقررة.</div>
 </section>
 </div>
 
